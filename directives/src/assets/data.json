@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "name": "Neat Tree",
+    "description": "there's some description"
+  },
+  {
+    "id": 2,
+    "name": "Snowy Mountain",
+    "description": "there's some description"
+  },
+  {
+    "id": 3,
+    "name": "Mountain Biking",
+    "description": "there's some description"
+  }
+]

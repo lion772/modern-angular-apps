@@ -1,6 +1,14 @@
+<div class="pagination">
+  <li class="page-item"><a class="page-link">Previous</a></li>
+  <li class="page-item active"><a class="page-link">1</a></li>
+  <li class="page-item"><a class="page-link">2</a></li>
+  <li class="page-item"><a class="page-link">3</a></li>
+  <li class="page-item"><a class="page-link">Next</a></li>
+</div>
 <h1 class="container">
   <div class="row text-center">
-    <div class="col">123</div>
-    <div class="col">456</div>
+    <div *ngFor="let item of data$ | async" class="col">
+      <app-cards [data]="item"></app-cards>
+    </div>
   </div>
 </h1>

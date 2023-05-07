@@ -12,9 +12,10 @@ export interface Data {
   providedIn: 'root',
 })
 export class DataService {
+  public data$ = this.http.get<Data[]>('/assets/data.json');
   public constructor(private http: HttpClient) {}
 
   public getDataJson(): Observable<Data[]> {
-    return this.http.get<any[]>('/assets/data.json');
+    return this.data$;
   }
 }

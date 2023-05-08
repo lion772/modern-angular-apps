@@ -10,10 +10,10 @@ import { Data, DataService } from './data.service';
 export class AppComponent implements OnInit {
   public data$: Observable<Data[]> = this.dataService.getDataJson();
   public dataList!: Data[];
+  public itemToShow!: Data;
+  public totalPages!: number;
   public pageSize = 1;
   public currentPage = 0;
-  public totalPages!: number;
-  public itemToShow!: Data;
 
   public constructor(public dataService: DataService) {}
 
@@ -28,12 +28,30 @@ export class AppComponent implements OnInit {
     return Array.from({ length: n }, (_, i) => i);
   }
 
-  public displayPage(pageNumber: number) {
+  public displayPage(pageNumber: number): void {
     this.currentPage = pageNumber;
     let startIndex = pageNumber * this.pageSize;
-
     const endIndex = startIndex + this.pageSize;
     this.itemToShow = this.dataList.slice(startIndex, endIndex)[0];
-    console.log(startIndex, endIndex);
+  }
+
+  public onNextPage(): void {
+    if (this.currentPage === this.totalPages - 1) {
+      this.currentPage = 0;
+    } else {
+      this.currentPage++;
+    }
+
+    this.displayPage(this.currentPage);
+  }
+
+  public onPreviousPage(): void {
+    if (this.currentPage === 0) {
+      this.currentPage = this.totalPages - 1;
+    } else {
+      this.currentPage--;
+    }
+
+    this.displayPage(this.currentPage);
   }
 }

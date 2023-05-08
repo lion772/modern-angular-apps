@@ -1,29 +1,24 @@
 <h1 class="container row">
-  <ul
-    *ngFor="let page of range(totalPages); let index = index"
-    class="pagination col-1"
-  >
-    <li (click)="displayPage(page)" class="page-item">
-      <a
-        *ngIf="currentPage === page; else otherPage"
-        [ngClass]="['active']"
-        class="page-link"
-        >{{ page }}</a
-      >
-      <ng-template #otherPage>
-        <a class="page-link">{{ page }}</a>
-      </ng-template>
+  <ul class="pagination col-1">
+    <li class="page-item">
+      <a class="page-link" (click)="onPreviousPage()"> Previous </a>
+    </li>
+    <li
+      *ngFor="let page of range(totalPages)"
+      (click)="displayPage(page)"
+      [ngClass]="{ active: currentPage === page }"
+      class="page-item"
+    >
+      <a class="page-link">{{ page + 1 }}</a>
+    </li>
+    <li class="page-item" (click)="onNextPage()">
+      <a class="page-link"> Next </a>
     </li>
     <!--  <li class="page-item"><a class="page-link">Previous</a></li>
     <li class="page-item active"><a class="page-link">1</a></li>
     <li class="page-item"><a class="page-link">Next</a></li> -->
   </ul>
-  <!-- <div
-    class="row text-center"
-    *ngFor="let item of data$ | async; let index = index"
-  >
-    <app-cards [data]="item"></app-cards>
-  </div> -->
+
   <ng-container *ngIf="itemToShow; else itemDefault">
     <app-cards [data]="itemToShow"></app-cards>
   </ng-container>

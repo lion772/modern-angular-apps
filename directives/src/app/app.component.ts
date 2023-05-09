@@ -11,8 +11,12 @@ export class AppComponent implements OnInit {
   public data$: Observable<Data[]> = this.dataService.getDataJson();
   public itemToShow!: Data;
   public totalPages!: number;
+  public totalRangePages!: number[];
+  public actualRangePages!: number[];
+
   public pageSize = 1;
   public currentPage = 0;
+  public pagesToShow = 3;
   public dataAvailable!: WritableSignal<Data[]>;
   public shouldDisplayData = false;
 
@@ -22,6 +26,10 @@ export class AppComponent implements OnInit {
     this.data$.subscribe((items: Data[]) => {
       this.dataAvailable = signal(items);
       this.totalPages = Math.ceil(items.length / this.pageSize);
+      this.totalRangePages = this.range(this.totalPages);
+      this.actualRangePages = this.totalRangePages.filter(
+        (el) => el < this.pagesToShow
+      );
     });
   }
 
@@ -34,11 +42,26 @@ export class AppComponent implements OnInit {
   }
 
   public onNextPage(): void {
+    if (
+      this.currentPage === this.pagesToShow - 1 &&
+      this.currentPage < this.totalPages
+    ) {
+      this.pagesToShow += 3;
+      this.actualRangePages = this.totalRangePages.filter(
+        (el) => el > this.currentPage
+      );
+    }
     this.currentPage++;
     this.setCurrentPage(this.currentPage);
   }
 
   public onPreviousPage(): void {
+    if (this.currentPage === this.actualRangePages[0] && this.currentPage > 0) {
+      this.pagesToShow -= 3;
+      this.actualRangePages = this.totalRangePages.filter(
+        (el) => el < this.currentPage
+      );
+    }
     this.currentPage--;
     this.setCurrentPage(this.currentPage);
   }

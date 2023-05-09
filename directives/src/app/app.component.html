@@ -3,18 +3,16 @@
     <li class="page-item" [ngClass]="{ disabled: currentPage === 0 }">
       <a class="page-link" (click)="onPreviousPage()"> Previous </a>
     </li>
-    <li
-      *ngFor="let page of actualRangePages"
-      [ngClass]="{ active: currentPage === page }"
-      class="page-item"
-    >
-      <a
-        *ngIf="page < pagesToShow"
-        class="page-link"
-        (click)="setCurrentPage(page)"
-        >{{ page + 1 }}</a
-      >
-    </li>
+    <ng-container *ngFor="let page of actualRangePages">
+      <li [ngClass]="{ active: currentPage === page }" class="page-item">
+        <a
+          *ngIf="page < pagesToShow"
+          class="page-link"
+          (click)="setCurrentPage(page)"
+          >{{ page + 1 }}</a
+        >
+      </li>
+    </ng-container>
     <li
       class="page-item"
       [ngClass]="{ disabled: currentPage === totalPages - 1 }"

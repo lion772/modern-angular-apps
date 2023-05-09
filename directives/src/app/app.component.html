@@ -1,10 +1,10 @@
 <div class="container row">
   <ul class="pagination col-1">
-    <li class="page-item" [ngClass]="{ disabled: currentPage === 0 }">
+    <li class="page-item" [appClass]="{ disabled: currentPage === 0 }">
       <a class="page-link" (click)="onPreviousPage()"> Previous </a>
     </li>
     <ng-container *ngFor="let page of actualRangePages">
-      <li [ngClass]="{ active: currentPage === page }" class="page-item">
+      <li [appClass]="{ active: currentPage === page }" class="page-item">
         <a
           *ngIf="page < pagesToShow"
           class="page-link"
@@ -15,7 +15,7 @@
     </ng-container>
     <li
       class="page-item"
-      [ngClass]="{ disabled: currentPage === totalPages - 1 }"
+      [appClass]="{ disabled: currentPage === totalPages - 1 }"
     >
       <a class="page-link" (click)="onNextPage()"> Next </a>
     </li>

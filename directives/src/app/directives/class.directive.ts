@@ -1,10 +1,19 @@
-import { Directive } from '@angular/core';
+import { Directive, ElementRef, Input } from '@angular/core';
 
 @Directive({
-  selector: '[appClass]'
+  selector: '[appClass]',
 })
 export class ClassDirective {
+  constructor(private elementRef: ElementRef) {}
 
-  constructor() { }
-
+  @Input('appClass')
+  set classNames(classObj: any) {
+    for (const key in classObj) {
+      if (classObj[key]) {
+        this.elementRef.nativeElement.classList.add(key);
+      } else {
+        this.elementRef.nativeElement.classList.remove(key);
+      }
+    }
+  }
 }

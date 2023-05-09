@@ -29,25 +29,17 @@ export class AppComponent implements OnInit {
     return Array.from({ length: n }, (_, i) => i);
   }
 
-  public displayPage(pageNumber: number): void {
+  public setCurrentPage(pageNumber: number): void {
     this.currentPage = pageNumber;
   }
 
   public onNextPage(): void {
-    if (this.currentPage === this.totalPages - 1) {
-      this.currentPage = 0;
-    } else {
-      this.currentPage++;
-    }
-    this.displayPage(this.currentPage);
+    this.currentPage++;
+    this.setCurrentPage(this.currentPage);
   }
 
   public onPreviousPage(): void {
-    if (this.currentPage === 0) {
-      this.currentPage = this.totalPages - 1;
-    } else {
-      this.currentPage--;
-    }
-    this.displayPage(this.currentPage);
+    this.currentPage--;
+    this.setCurrentPage(this.currentPage);
   }
 }

@@ -1,18 +1,21 @@
 <h1 class="container row">
   <ul class="pagination col-1">
-    <li class="page-item">
+    <li class="page-item" [ngClass]="{ disabled: currentPage === 0 }">
       <a class="page-link" (click)="onPreviousPage()"> Previous </a>
     </li>
     <li
       *ngFor="let page of range(totalPages)"
-      (click)="displayPage(page)"
+      (click)="setCurrentPage(page)"
       [ngClass]="{ active: currentPage === page }"
       class="page-item"
     >
       <a class="page-link">{{ page + 1 }}</a>
     </li>
-    <li class="page-item" (click)="onNextPage()">
-      <a class="page-link"> Next </a>
+    <li
+      class="page-item"
+      [ngClass]="{ disabled: currentPage === totalPages - 1 }"
+    >
+      <a class="page-link" (click)="onNextPage()"> Next </a>
     </li>
   </ul>
 

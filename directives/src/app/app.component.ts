@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable, switchMap } from 'rxjs';
+import { Component, OnInit, WritableSignal, signal } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Data, DataService } from './data.service';
 
 @Component({
@@ -9,18 +9,19 @@ import { Data, DataService } from './data.service';
 })
 export class AppComponent implements OnInit {
   public data$: Observable<Data[]> = this.dataService.getDataJson();
-  public dataList!: Data[];
   public itemToShow!: Data;
   public totalPages!: number;
   public pageSize = 1;
   public currentPage = 0;
+  public dataAvailable!: WritableSignal<Data[]>;
+  public shouldDisplayData = false;
 
   public constructor(public dataService: DataService) {}
 
   public ngOnInit(): void {
     this.data$.subscribe((items: Data[]) => {
-      this.dataList = items;
-      this.totalPages = Math.ceil(this.dataList.length / this.pageSize);
+      this.dataAvailable = signal(items);
+      this.totalPages = Math.ceil(items.length / this.pageSize);
     });
   }
 
@@ -30,9 +31,6 @@ export class AppComponent implements OnInit {
 
   public displayPage(pageNumber: number): void {
     this.currentPage = pageNumber;
-    let startIndex = pageNumber * this.pageSize;
-    const endIndex = startIndex + this.pageSize;
-    this.itemToShow = this.dataList.slice(startIndex, endIndex)[0];
   }
 
   public onNextPage(): void {
@@ -41,7 +39,6 @@ export class AppComponent implements OnInit {
     } else {
       this.currentPage++;
     }
-
     this.displayPage(this.currentPage);
   }
 
@@ -51,7 +48,6 @@ export class AppComponent implements OnInit {
     } else {
       this.currentPage--;
     }
-
     this.displayPage(this.currentPage);
   }
 }

@@ -14,16 +14,9 @@
     <li class="page-item" (click)="onNextPage()">
       <a class="page-link"> Next </a>
     </li>
-    <!--  <li class="page-item"><a class="page-link">Previous</a></li>
-    <li class="page-item active"><a class="page-link">1</a></li>
-    <li class="page-item"><a class="page-link">Next</a></li> -->
   </ul>
 
-  <ng-container *ngIf="itemToShow; else itemDefault">
-    <app-cards [data]="itemToShow"></app-cards>
+  <ng-container *ngIf="dataAvailable">
+    <app-cards [data]="dataAvailable()[currentPage]"></app-cards>
   </ng-container>
-
-  <ng-template #itemDefault>
-    <app-cards></app-cards>
-  </ng-template>
 </h1>

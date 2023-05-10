@@ -25,9 +25,10 @@ export class AppComponent implements OnInit {
   public ngOnInit(): void {
     this.data$.subscribe((items: Data[]) => {
       this.dataAvailable = signal(items);
-      this.totalPages = Math.ceil(items.length / this.pageSize);
-      this.totalRangePages = this.range(this.totalPages);
+      this.totalPages = Math.ceil(items.length / this.pageSize); //get hold of total pages to be displayed
+      this.totalRangePages = this.range(this.totalPages); //create a range out of total pages number
       this.actualRangePages = this.totalRangePages.filter(
+        //start off with a default range list from 0 to 3
         (el) => el < this.pagesToShow
       );
     });

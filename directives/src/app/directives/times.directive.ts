@@ -15,7 +15,9 @@ export class TimesDirective {
     let index = 0;
     this.viewContainerRef.clear();
     do {
-      this.viewContainerRef.createEmbeddedView(this.templateRef);
+      this.viewContainerRef.createEmbeddedView(this.templateRef, {
+        index,
+      });
       index++;
     } while (index < times);
   }

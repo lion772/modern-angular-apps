@@ -3,23 +3,25 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { ElementsModule } from './elements/elements.module';
 import { CollectionsModule } from './collections/collections.module';
 import { ModsModule } from './mods/mods.module';
 import { ViewsModule } from './views/views.module';
 import { NavbarComponent } from './navbar/navbar.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
+import { NotFoundComponent } from './not-found-component/not-found.component';
+import { HomeComponent } from './home/home.component';
 @NgModule({
-  declarations: [AppComponent, NavbarComponent],
+  declarations: [
+    AppComponent,
+    NavbarComponent,
+    NotFoundComponent,
+    HomeComponent,
+  ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    ElementsModule,
     CollectionsModule,
     ModsModule,
     ViewsModule,
-    FontAwesomeModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

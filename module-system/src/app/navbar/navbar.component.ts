@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-navbar',
@@ -7,5 +6,5 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent {
-  public searchIcon = faSearch;
+  public constructor() {}
 }

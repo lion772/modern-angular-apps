@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NotFoundComponent } from './not-found-component/not-found.component';
 import { HomeComponent } from './home/home.component';
+import { OthersModule } from './others/others.module';
 @NgModule({
   declarations: [
     AppComponent,

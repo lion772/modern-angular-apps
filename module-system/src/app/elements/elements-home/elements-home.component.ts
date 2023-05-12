@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./elements-home.component.css'],
 })
 export class ElementsHomeComponent {
+  public title = 'Element Component';
   public shouldDisplayHeader = true;
   public linesToShow = 3;
 }

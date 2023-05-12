@@ -1,4 +1,18 @@
+<app-divider>
+  <h1 title>{{ title }}</h1>
+</app-divider>
 <app-placeholder
   [shouldDisplayHeader]="shouldDisplayHeader"
   [linesNumber]="linesToShow"
 ></app-placeholder>
+<app-divider>
+  <h1 title>Segment Component</h1>
+</app-divider>
+<app-segment>
+  <ng-container>
+    <i class="pdf file outline icon"></i>
+    <p>No documents are listed for this customer.</p>
+  </ng-container>
+
+  <button class="ui primary button">Add Document</button>
+</app-segment>

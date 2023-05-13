@@ -1,0 +1,7 @@
+{
+  "headers": [
+    { "key": "name", "label": "Name" },
+    { "key": "age", "label": "Age" },
+    { "key": "job", "label": "Job" }
+  ]
+}

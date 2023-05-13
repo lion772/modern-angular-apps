@@ -7,6 +7,7 @@ import { Header, User } from 'src/app/collections/data.service';
   styleUrls: ['./table.component.css'],
 })
 export class TableComponent {
+  @Input('class') classNames = '';
   @Input() dataList!: User[];
   @Input() headerslist!: Header[];
 }

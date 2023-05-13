@@ -1,7 +1,7 @@
-<p>collections-home works!</p>
-<app-table></app-table>
 <app-divider>
-  <ng-container>
-    <h1>Tabs</h1>
-  </ng-container>
+  <h1 title>Tabs</h1>
+  <app-table
+    *ngIf="data$ | async as dataList"
+    [dataList]="dataList"
+  ></app-table>
 </app-divider>

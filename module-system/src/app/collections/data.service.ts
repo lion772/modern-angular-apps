@@ -16,9 +16,9 @@ export class DataService {
   constructor(private http: HttpClient) {}
 
   public getData(): Observable<User[]> {
-    return this.http.get<any>('/assets/data.json').pipe(
-      map((res) => {
-        return res.obj.map((list: User) => list);
+    return this.http.get<any>('assets/data.json').pipe(
+      map(({ users }) => {
+        return users.map((list: User) => list);
       })
     );
   }

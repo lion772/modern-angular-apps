@@ -1,10 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { User } from 'src/app/collections/data.service';
-
-interface Headers {
-  key: string;
-  label: string;
-}
+import { Header, User } from 'src/app/collections/data.service';
 
 @Component({
   selector: 'app-table',
@@ -13,5 +8,5 @@ interface Headers {
 })
 export class TableComponent {
   @Input() dataList!: User[];
-  @Input() headerslist = [];
+  @Input() headerslist!: Header[];
 }

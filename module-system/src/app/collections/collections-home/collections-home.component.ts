@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { DataService, User } from '../data.service';
-import { Observable } from 'rxjs';
+import { Component } from '@angular/core';
+import { DataService, Header, User } from '../data.service';
+import { Observable, combineLatest, map } from 'rxjs';
 
 @Component({
   selector: 'app-collections-home',
@@ -9,6 +9,10 @@ import { Observable } from 'rxjs';
 })
 export class CollectionsHomeComponent {
   public data$: Observable<User[]> = this.dataService.getData();
-  public dataList: User[] = [];
+  public headers$: Observable<Header[]> = this.dataService.getHeaders();
+  public vm$ = combineLatest([this.data$, this.headers$]).pipe(
+    map(([data, headers]) => ({ data, headers }))
+  );
+
   public constructor(public dataService: DataService) {}
 }

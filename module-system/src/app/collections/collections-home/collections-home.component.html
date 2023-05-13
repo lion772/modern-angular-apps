@@ -1,7 +1,10 @@
 <app-divider>
   <h1 title>Tabs</h1>
-  <app-table
-    *ngIf="data$ | async as dataList"
-    [dataList]="dataList"
-  ></app-table>
+  <ng-container *ngIf="vm$ | async as vm">
+    <app-table
+      *ngIf="vm.data && vm.headers"
+      [dataList]="vm.data"
+      [headerslist]="vm.headers"
+    ></app-table>
+  </ng-container>
 </app-divider>

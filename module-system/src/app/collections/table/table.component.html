@@ -1,9 +1,7 @@
 <table class="ui celled table">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Age</th>
-      <th>Job</th>
+      <th *ngFor="let header of headerslist">{{ header.label }}</th>
     </tr>
   </thead>
   <tbody>

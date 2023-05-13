@@ -9,6 +9,11 @@ export interface User {
   job: string;
 }
 
+export interface Header {
+  key: string;
+  label: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -16,10 +21,14 @@ export class DataService {
   constructor(private http: HttpClient) {}
 
   public getData(): Observable<User[]> {
-    return this.http.get<any>('assets/data.json').pipe(
-      map(({ users }) => {
-        return users.map((list: User) => list);
-      })
-    );
+    return this.http
+      .get<any>('assets/data.json')
+      .pipe(map(({ users }) => users.map((list: User) => list)));
+  }
+
+  public getHeaders(): Observable<Header[]> {
+    return this.http
+      .get<any>('assets/headers.json')
+      .pipe(map(({ headers }) => headers.map((header: Header) => header)));
   }
 }

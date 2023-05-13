@@ -6,9 +6,10 @@ import { CollectionsHomeComponent } from './collections-home/collections-home.co
 import { SharedModule } from '../shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { DataService } from './data.service';
+import { TableComponent } from './table/table.component';
 
 @NgModule({
-  declarations: [CollectionsHomeComponent],
+  declarations: [CollectionsHomeComponent, TableComponent],
   imports: [
     CommonModule,
     CollectionsRoutingModule,

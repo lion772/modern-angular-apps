@@ -5,7 +5,8 @@
       *ngIf="vm.data && vm.headers"
       [dataList]="vm.data"
       [headerslist]="vm.headers"
-      class="striped celled"
+      [class]="classNames"
     ></app-table>
   </ng-container>
+  <app-tabs></app-tabs>
 </app-divider>

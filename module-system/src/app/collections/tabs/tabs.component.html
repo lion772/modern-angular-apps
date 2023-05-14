@@ -1,0 +1,25 @@
+<div *ngIf="profileInfo$ | async as profileInfo" class="ui grid">
+  <div class="four wide column">
+    <div class="ui vertical fluid tabular menu">
+      <a
+        *ngFor="let keyValuePair of profileInfo | keyvalue; let index = index"
+        (click)="currentIndex = index"
+        [ngClass]="{ active: currentIndex === index }"
+        class="item"
+      >
+        {{ keyValuePair.key }}
+      </a>
+    </div>
+  </div>
+  <div class="twelve wide stretched column">
+    <div class="ui segment">
+      <ng-container
+        *ngFor="let keyValuePair of profileInfo | keyvalue; let index = index"
+      >
+        <p *ngIf="currentIndex === index">
+          {{ keyValuePair.value }}
+        </p>
+      </ng-container>
+    </div>
+  </div>
+</div>

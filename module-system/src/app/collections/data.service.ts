@@ -15,6 +15,13 @@ export interface Header {
   label: string;
 }
 
+export interface Profile {
+  bio: string;
+  pics: string;
+  companies: string;
+  links: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -31,5 +38,18 @@ export class DataService {
     return this.http
       .get<any>('assets/headers.json')
       .pipe(map(({ headers }) => headers.map((header: Header) => header)));
+  }
+
+  public getProfileInfomation(): Observable<Profile> {
+    return this.http.get<any>('assets/profile-info.json').pipe(
+      map(({ infos }) => {
+        return {
+          bio: infos.bio,
+          pics: infos.pics,
+          companies: infos.companies,
+          links: infos.links,
+        };
+      })
+    );
   }
 }

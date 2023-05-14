@@ -8,6 +8,7 @@ import { Observable, combineLatest, map } from 'rxjs';
   styleUrls: ['./collections-home.component.css'],
 })
 export class CollectionsHomeComponent {
+  public classNames = 'striped celled';
   public data$: Observable<User[]> = this.dataService.getData();
   public headers$: Observable<Header[]> = this.dataService.getHeaders();
   public vm$ = combineLatest([this.data$, this.headers$]).pipe(

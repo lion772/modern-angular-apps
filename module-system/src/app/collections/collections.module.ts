@@ -7,9 +7,10 @@ import { SharedModule } from '../shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { DataService } from './data.service';
 import { TableComponent } from './table/table.component';
+import { TabsComponent } from './tabs/tabs.component';
 
 @NgModule({
-  declarations: [CollectionsHomeComponent, TableComponent],
+  declarations: [CollectionsHomeComponent, TableComponent, TabsComponent],
   imports: [
     CommonModule,
     CollectionsRoutingModule,

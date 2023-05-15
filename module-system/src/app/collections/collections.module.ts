@@ -8,9 +8,19 @@ import { HttpClientModule } from '@angular/common/http';
 import { DataService } from './data.service';
 import { TableComponent } from './table/table.component';
 import { TabsComponent } from './tabs/tabs.component';
+import { BiographyComponent } from './biography/biography.component';
+import { CompaniesComponent } from './companies/companies.component';
+import { PartnersComponent } from './partners/partners.component';
 
 @NgModule({
-  declarations: [CollectionsHomeComponent, TableComponent, TabsComponent],
+  declarations: [
+    CollectionsHomeComponent,
+    TableComponent,
+    TabsComponent,
+    BiographyComponent,
+    CompaniesComponent,
+    PartnersComponent,
+  ],
   imports: [
     CommonModule,
     CollectionsRoutingModule,

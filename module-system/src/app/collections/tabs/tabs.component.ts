@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { DataService, Profile } from '../data.service';
-import { Observable, combineLatest, map } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-tabs',

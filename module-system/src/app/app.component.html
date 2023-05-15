@@ -1,13 +1,15 @@
-<div class="ui container">
-  <div class="ui secondary pointing menu">
-    <ng-container *ngFor="let item of items">
-      <a routerLinkActive="active" class="item" [routerLink]="'/' + item"
-        >{{ item.charAt(0).toUpperCase() }}{{ item.slice(1) }}</a
-      >
-    </ng-container>
-  </div>
+<app-navbar>
+  <div class="ui container">
+    <div class="ui secondary pointing menu">
+      <ng-container *ngFor="let item of items">
+        <a routerLinkActive="active" class="item" [routerLink]="'/' + item"
+          >{{ item.charAt(0).toUpperCase() }}{{ item.slice(1) }}</a
+        >
+      </ng-container>
+    </div>
 
-  <div class="ui segment">
-    <router-outlet></router-outlet>
+    <div class="ui segment">
+      <router-outlet></router-outlet>
+    </div>
   </div>
-</div>
+</app-navbar>

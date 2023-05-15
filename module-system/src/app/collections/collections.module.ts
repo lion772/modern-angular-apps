@@ -11,6 +11,7 @@ import { TabsComponent } from './tabs/tabs.component';
 import { BiographyComponent } from './biography/biography.component';
 import { CompaniesComponent } from './companies/companies.component';
 import { PartnersComponent } from './partners/partners.component';
+import { ReusableTabsComponent } from './reusable-tabs/reusable-tabs.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { PartnersComponent } from './partners/partners.component';
     BiographyComponent,
     CompaniesComponent,
     PartnersComponent,
+    ReusableTabsComponent,
   ],
   imports: [
     CommonModule,

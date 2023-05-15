@@ -1,0 +1,14 @@
+<div class="ui grid">
+  <div class="four wide column">
+    <div class="ui vertical fluid tabular menu">
+      <!-- Display semantic-ui tabs to which you can navigate via routing -->
+      <ng-content></ng-content>
+    </div>
+  </div>
+  <div class="twelve wide stretched column">
+    <div class="ui segment">
+      <!-- Display components' content below -->
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

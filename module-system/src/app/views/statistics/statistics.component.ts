@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
-import { ManageViewsService, View } from '../manage-views.service';
-import { Observable } from 'rxjs';
+import { Component, Input } from '@angular/core';
+import { View } from '../manage-views.service';
 
 @Component({
   selector: 'app-statistics',
@@ -8,7 +7,5 @@ import { Observable } from 'rxjs';
   styleUrls: ['./statistics.component.css'],
 })
 export class StatisticsComponent {
-  public stats$: Observable<View[]> = this.manageViewService.getViewsData();
-  public constructor(public manageViewService: ManageViewsService) {}
-
+  @Input() stats!: View[];
 }

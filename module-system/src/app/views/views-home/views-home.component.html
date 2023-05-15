@@ -1,1 +1,3 @@
-<app-statistics></app-statistics>
+<ng-container *ngIf="stats$ | async as stats">
+  <app-statistics [stats]="stats"></app-statistics>
+</ng-container>

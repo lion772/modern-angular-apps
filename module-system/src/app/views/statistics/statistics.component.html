@@ -1,4 +1,4 @@
-<div *ngIf="stats$ | async as stats" class="ui statistics">
+<div class="ui statistics">
   <div *ngFor="let stat of stats" class="statistic">
     <div class="value">{{ stat.value }}</div>
     <div class="label">{{ stat.label }}</div>

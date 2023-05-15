@@ -1,0 +1,7 @@
+{
+  "views": [
+    { "value": 22, "label": "# of Users" },
+    { "value": 900, "label": "Revenue" },
+    { "value": 50, "label": "Reviews" }
+  ]
+}

@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  public items = ['elements', 'collections', 'mods', 'views', 'others'];
+  public items = ['elements', 'collections', 'views', 'mods', 'others'];
   public currentIndex = 0;
 }

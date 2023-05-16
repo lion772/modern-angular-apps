@@ -2,7 +2,6 @@
   <h1 title>Tabs</h1>
   <ng-container *ngIf="vm$ | async as vm">
     <app-table
-      *ngIf="vm.data && vm.headers"
       [dataList]="vm.data"
       [headerslist]="vm.headers"
       [class]="classNames"
@@ -12,13 +11,13 @@
 </app-divider>
 <app-reusable-tabs>
   <ng-container *ngFor="let item of tabList">
-        <a
-          class="item"
-          routerLink="./{{ item ? item : '' }}"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
-        >
-          {{ item ? item[0].toUpperCase() + item.slice(1) : mainRouteLabel }}</a
-        >
-      </ng-container>
+    <a
+      class="item"
+      routerLink="./{{ item ? item : '' }}"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      {{ item ? item[0].toUpperCase() + item.slice(1) : mainRouteLabel }}</a
+    >
+  </ng-container>
 </app-reusable-tabs>

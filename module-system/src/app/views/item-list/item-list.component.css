@@ -1,0 +1,19 @@
+.image {
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+  border: 2px solid #000;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  filter: brightness(120%) contrast(120%);
+  transition: all 0.3s ease;
+}
+
+img:hover {
+  opacity: 0.8;
+}
+
+div.ui.items div.content {
+  margin: auto;
+}

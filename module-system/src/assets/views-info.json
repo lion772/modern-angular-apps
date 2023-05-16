@@ -1,7 +1,7 @@
 {
   "views": [
-    { "value": 22, "label": "# of Users" },
-    { "value": 900, "label": "Revenue" },
-    { "value": 50, "label": "Reviews" }
+    { "id": 1, "value": 22, "label": "# of Users" },
+    { "id": 2, "value": 900, "label": "Revenue" },
+    { "id": 3, "value": 50, "label": "Reviews" }
   ]
 }

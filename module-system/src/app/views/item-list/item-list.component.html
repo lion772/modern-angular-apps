@@ -1,4 +1,4 @@
-<div *ngIf="images$ | async as images" class="ui items">
+<div *ngIf="images" class="ui items">
   <div *ngFor="let image of images" class="item">
     <div class="image">
       <img [src]="image.image" />

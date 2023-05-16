@@ -10,8 +10,9 @@
   transition: all 0.3s ease;
 }
 
-img:hover {
+.image:hover {
   opacity: 0.8;
+  scale: calc(0.99);
 }
 
 div.ui.items div.content {

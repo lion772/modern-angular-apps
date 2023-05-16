@@ -5,4 +5,6 @@
   <app-statistics [stats]="stats"></app-statistics>
 </ng-container>
 <br />
-<app-item-list></app-item-list>
+<ng-container *ngIf="images$ | async as images">
+  <app-item-list [images]="images"></app-item-list>
+</ng-container>

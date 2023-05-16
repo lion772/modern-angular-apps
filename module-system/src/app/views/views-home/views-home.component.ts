@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ManageViewsService, View } from '../manage-views.service';
+import { Image, ManageViewsService, View } from '../manage-views.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -9,5 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class ViewsHomeComponent {
   public stats$: Observable<View[]> = this.manageViewService.getViewsData();
+  public images$: Observable<Image[]> = this.manageViewService.getImagesData();
+
   public constructor(public manageViewService: ManageViewsService) {}
 }

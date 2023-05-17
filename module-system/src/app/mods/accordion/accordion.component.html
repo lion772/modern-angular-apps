@@ -1,18 +1,20 @@
 <div
-  *ngFor="let accordion of accordionList; let index = index"
+  *ngIf="accordionList$ | async as accordionList"
   class="ui styled accordion"
 >
-  <div
-    (click)="currentIndex = index"
-    [ngClass]="{ active: currentIndex === index }"
-    class="title"
-  >
-    <i class="dropdown icon"></i>
-    {{ accordion.title }}
-  </div>
-  <div [ngClass]="{ active: currentIndex === index }" class="content">
-    <p class="transition">
-      {{ accordion.description }}
-    </p>
-  </div>
+  <ng-container *ngFor="let accordion of accordionList; let index = index">
+    <div
+      (click)="onClick(index)"
+      [ngClass]="{ active: currentIndex === index }"
+      class="title"
+    >
+      <i class="dropdown icon"></i>
+      {{ accordion.title }}
+    </div>
+    <div [ngClass]="{ active: currentIndex === index }" class="content">
+      <p class="transition">
+        {{ accordion.description }}
+      </p>
+    </div>
+  </ng-container>
 </div>

@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Accordion, AccordionService } from '../accordion.service';
 
 @Component({
   selector: 'app-accordion',
@@ -7,21 +9,15 @@ import { Component } from '@angular/core';
 })
 export class AccordionComponent {
   public currentIndex = 0;
-  public accordionList = [
-    {
-      title: ' What is a dog?',
-      description:
-        'A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.',
-    },
-    {
-      title: ' What is a dog?',
-      description:
-        'A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.',
-    },
-    {
-      title: ' What is a dog?',
-      description:
-        'A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.',
-    },
-  ];
+  public accordionData = inject(AccordionService);
+  public accordionList$: Observable<Accordion[]> =
+    this.accordionData.getAccordionData();
+
+  public onClick(index: number): void {
+    if (this.currentIndex === index) {
+      this.currentIndex = -1;
+      return;
+    }
+    this.currentIndex = index;
+  }
 }

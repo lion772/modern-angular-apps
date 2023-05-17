@@ -7,7 +7,7 @@ import { ModalComponent } from '../modal/modal.component';
   styleUrls: ['./mods-home.component.css'],
 })
 export class ModsHomeComponent {
-  public showModal = true;
+  public showModal = false;
 
   public onCloseModal(): void {
     this.showModal = !this.showModal;

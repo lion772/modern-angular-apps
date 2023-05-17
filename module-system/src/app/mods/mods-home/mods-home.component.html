@@ -1,6 +1,7 @@
 <app-divider>
   <h1 title>Modules</h1>
 </app-divider>
+<button (click)="showModal = !showModal" class="ui button">Show Modal</button>
 <app-modal *ngIf="showModal" (closeModalEmit)="onCloseModal()">
   <ng-container header>Modal Header</ng-container>
   <p content>Modal content goes right here</p>
@@ -8,3 +9,4 @@
     <button (click)="onCloseModal()" class="ui button">Close</button>
   </ng-container>
 </app-modal>
+<app-accordion></app-accordion>

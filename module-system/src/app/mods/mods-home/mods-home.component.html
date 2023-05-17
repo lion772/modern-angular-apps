@@ -1,7 +1,7 @@
 <app-divider>
   <h1 title>Modules</h1>
 </app-divider>
-<app-modal
-  *ngIf="showModal"
-  (closeModalEmit)="onCloseModal($event)"
-></app-modal>
+<app-modal *ngIf="showModal" (closeModalEmit)="onCloseModal($event)">
+  <h1 class="header">MODAL HEADER</h1>
+  <p content>Modal content goes right here</p>
+</app-modal>

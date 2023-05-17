@@ -9,7 +9,7 @@ import { ModalComponent } from '../modal/modal.component';
 export class ModsHomeComponent {
   public showModal = true;
 
-  public onCloseModal(event: any): void {
-    this.showModal = event.value;
+  public onCloseModal(showModal: boolean): void {
+    this.showModal = showModal;
   }
 }

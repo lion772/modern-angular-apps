@@ -15,9 +15,9 @@
 
 <div (click)="onCloseClick()" class="modal-backdrop">
   <div (click)="$event.stopPropagation()" class="modal open">
-    <h1 class="header">MODAL HEADER</h1>
+    <ng-content select=".header"></ng-content>
     <div class="modal-content">
-      <p>Modal content goes right here</p>
+      <ng-content select="[content]"></ng-content>
     </div>
     <button (click)="onCloseClick()" class="ui button">OK</button>
   </div>

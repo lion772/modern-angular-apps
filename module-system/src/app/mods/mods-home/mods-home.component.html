@@ -1,4 +1,7 @@
 <app-divider>
   <h1 title>Modules</h1>
 </app-divider>
-<app-modal></app-modal>
+<app-modal
+  *ngIf="showModal"
+  (closeModalEmit)="onCloseModal($event)"
+></app-modal>

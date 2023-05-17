@@ -1,10 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-mods-home',
   templateUrl: './mods-home.component.html',
-  styleUrls: ['./mods-home.component.css']
+  styleUrls: ['./mods-home.component.css'],
 })
 export class ModsHomeComponent {
+  public showModal = true;
 
+  public onCloseModal(event: any): void {
+    this.showModal = event.value;
+  }
 }

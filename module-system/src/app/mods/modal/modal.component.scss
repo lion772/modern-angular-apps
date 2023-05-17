@@ -36,3 +36,12 @@
     z-index: 0;
   }
 }
+
+.actions:empty,
+.actions.actions-default {
+  display: none;
+}
+
+.actions:empty + .actions-default {
+  display: block;
+}

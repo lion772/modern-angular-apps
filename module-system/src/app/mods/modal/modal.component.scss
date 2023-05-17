@@ -1,5 +1,5 @@
 :host {
-  margin: auto;
+  margin: 0 auto;
 
   .modal {
     position: fixed;
@@ -21,8 +21,9 @@
     }
   }
 
-  .header {
-    margin-bottom: 4rem;
+  .modal-content,
+  .button {
+    margin: 10px auto;
   }
 
   .modal-backdrop {

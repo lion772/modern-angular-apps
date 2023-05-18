@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, catchError, filter, map, of } from 'rxjs';
 
 export interface Accordion {
   title: string;
@@ -15,14 +15,16 @@ export class AccordionService {
 
   public getAccordionData(): Observable<Accordion[]> {
     return this.http
-      .get<{ accordions: Accordion[] }>('assets/accordion-data.json')
+      .get<{ accordions: Accordion[] | null }>('assets/accordion-data.json')
       .pipe(
-        map(({ accordions }) =>
-          accordions.map((accordion: Accordion) => ({
+        filter((res) => res !== null),
+        map((res: any) =>
+          res.accordions.map((accordion: Accordion) => ({
             title: accordion.title,
             description: accordion.description,
           }))
-        )
+        ),
+        catchError((error) => of([]))
       );
   }
 }

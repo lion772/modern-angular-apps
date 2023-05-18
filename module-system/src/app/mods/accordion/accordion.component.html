@@ -17,4 +17,11 @@
       </p>
     </div>
   </ng-container>
+
+  <ng-container *ngIf="!accordionList || accordionList.length === 0">
+    <p>No data available</p>
+  </ng-container>
 </div>
+<ng-container *ngIf="!(accordionList$ | async)">
+  No Data Available
+</ng-container>

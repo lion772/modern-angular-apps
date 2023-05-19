@@ -1,2 +1,4 @@
-<app-search-bar></app-search-bar>
-<app-page-list></app-page-list>
+<app-search-bar (termEmitter)="onTerm($event)"></app-search-bar>
+<ng-container *ngIf="pages$ | async as pages">
+  <app-page-list [pageList]="pages"></app-page-list>
+</ng-container>

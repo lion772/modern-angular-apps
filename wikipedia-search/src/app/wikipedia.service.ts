@@ -20,10 +20,6 @@ export class WikipediaService {
       srsearch: term,
       origin: '*',
     };
-    /* Object.keys(params).forEach(
-      (key) => (url += '?' + key + '=' + (params as any)[key])
-    );
-    console.log(`${url}`); */
 
     return this.http.get<any>(url, { params }).pipe(
       filter((res) => res !== null),

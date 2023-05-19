@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { WikipediaServiceService } from './search-bar/wikipedia.service';
+import { WikipediaServiceService } from './wikipedia.service';
 
 describe('WikipediaServiceService', () => {
   let service: WikipediaServiceService;

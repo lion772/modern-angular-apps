@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-page-list',
   templateUrl: './page-list.component.html',
-  styleUrls: ['./page-list.component.scss']
+  styleUrls: ['./page-list.component.scss'],
 })
 export class PageListComponent {
-
+  @Input('pageList') pages = [];
 }

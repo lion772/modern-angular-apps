@@ -1,6 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, filter, findIndex, map, of } from 'rxjs';
+import { Observable, catchError, filter, findIndex, map, of } from 'rxjs';
+
+export interface Page {
+  ng: number;
+  title: string;
+  pageid: number;
+  size: number;
+  wordcount: number;
+  snippet: string;
+  timestamp: string;
+}
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +18,7 @@ import { catchError, filter, findIndex, map, of } from 'rxjs';
 export class WikipediaService {
   constructor(private http: HttpClient) {}
 
-  public search(term: string) {
+  public search(term: string): Observable<Page[]> {
     let url = 'https://en.wikipedia.org/w/api.php';
 
     const params = {
@@ -21,10 +31,10 @@ export class WikipediaService {
       origin: '*',
     };
 
-    return this.http.get<any>(url, { params }).pipe(
+    return this.http.get<{ query: { search: Page[] } }>(url, { params }).pipe(
       filter((res) => res !== null),
-      map(({ query }) => query.search.map((page: any) => page)),
-      catchError((res) => of([]))
+      map(({ query }) => query.search.map((page: Page) => page)),
+      catchError((_) => of([]))
     );
   }
 }

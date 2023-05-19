@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { WikipediaService } from '../wikipedia.service';
+import { Page, WikipediaService } from '../wikipedia.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 export class HomeComponent {
   public term = '';
   private wikipediaService = inject(WikipediaService);
-  public pages$!: Observable<any>;
+  public pages$!: Observable<Page[]>;
 
   public onTerm(term: string) {
     this.term = term;

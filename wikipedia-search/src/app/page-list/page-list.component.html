@@ -1,3 +1,28 @@
-<div *ngIf="pages && pages.length > 0">
-  {{ pages | json }}
+<div class="container p-5">
+  <table *ngIf="pages && pages.length > 0" class="table m-auto">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Title</th>
+        <th scope="col">Snippet</th>
+        <th scope="col">Size</th>
+        <th scope="col">Link</th>
+      </tr>
+    </thead>
+    <ng-container *ngFor="let page of pages">
+      <tbody>
+        <tr>
+          <th scope="row">{{ page.pageid }}</th>
+          <td>{{ page.title }}</td>
+          <td [innerHTML]="page.snippet"></td>
+          <td>{{ page.size }}</td>
+          <td>
+            <a [href]="'https://en.wikipedia.org?curid=' + page.pageid"
+              >Link to {{ page.title }}
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </ng-container>
+  </table>
 </div>

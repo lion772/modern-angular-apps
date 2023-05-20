@@ -1,6 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, filter, findIndex, map, of } from 'rxjs';
+import { Observable, catchError, filter, map, of } from 'rxjs';
+
+interface WikiData {
+  query: { search: Page[] };
+}
 
 export interface Page {
   ng: number;
@@ -31,7 +35,7 @@ export class WikipediaService {
       origin: '*',
     };
 
-    return this.http.get<{ query: { search: Page[] } }>(url, { params }).pipe(
+    return this.http.get<WikiData>(url, { params }).pipe(
       filter((res) => res !== null),
       map(({ query }) => query.search.map((page: Page) => page)),
       catchError((_) => of([]))

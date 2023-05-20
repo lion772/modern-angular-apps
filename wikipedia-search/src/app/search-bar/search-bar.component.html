@@ -1,3 +1,9 @@
 <form (submit)="onSubmitForm($event)">
-  <input type="text" (input)="onInput($event)" />
+  <input
+    class="input is-primary"
+    type="text"
+    (input)="onInput($event)"
+    placeholder="e.g Space"
+  />
+  <p class="help">Term goes here</p>
 </form>

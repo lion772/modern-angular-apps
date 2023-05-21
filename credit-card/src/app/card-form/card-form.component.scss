@@ -1,0 +1,17 @@
+:host {
+  border: solid 1px red;
+  display: block;
+  margin: 2rem auto;
+  min-height: 50vh;
+
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  input {
+    width: 250px;
+    display: block;
+  }
+}

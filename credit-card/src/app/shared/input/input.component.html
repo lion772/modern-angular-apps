@@ -1,0 +1,32 @@
+<ng-template #oneSingleNameTemp let-name>
+  <p>{{ name[0].toUpperCase() }}{{ name.slice(1) }}</p>
+</ng-template>
+
+<ng-template #multipleNameTemp let-name>
+  <span *ngFor="let item of name.split(' ')">
+    {{ item[0].toUpperCase() }}{{ item.slice(1) }}
+  </span>
+</ng-template>
+
+<ng-container
+  *ngTemplateOutlet="
+    controlName?.split(' ')?.length === 1
+      ? oneSingleNameTemp
+      : multipleNameTemp;
+    context: { $implicit: controlName }
+  "
+></ng-container>
+
+<input
+  class="input"
+  [type]="inputType"
+  [formControl]="control"
+  (input)="onInput()"
+/>
+<div *ngIf="control.invalid && control.touched">
+  <ng-container *ngFor="let validator of validators">
+    <div *ngIf="control.errors?.[validator]">
+      {{ validatorsObj[validator] }}
+    </div>
+  </ng-container>
+</div>

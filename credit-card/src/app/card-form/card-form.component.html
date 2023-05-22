@@ -1,45 +1,28 @@
 <div class="container">
   <form [formGroup]="cardForm" (submit)="onSubmit()">
-    <ng-container>
-      <label for="name">Name</label>
-      <input class="input" type="text" formControlName="name" />
-      <div *ngIf="context.name?.invalid && context.name?.touched">
-        <div *ngIf="context.name?.errors">
-          Name containing 3 characters at least is required.
-        </div>
-      </div>
-    </ng-container>
-    <ng-container>
-      <label for="cardNumber">Card Number</label>
-      <input class="input" type="number" formControlName="cardNumber" />
-      <div *ngIf="context.cardNumber?.invalid && context.cardNumber?.touched">
-        <div *ngIf="context.cardNumber?.errors">
-          8 digits card number is required.
-        </div>
-      </div>
-    </ng-container>
-    <ng-container>
-      <label for="expiration">Expiration</label>
-      <input class="input" type="date" formControlName="expiration" />
-      <div *ngIf="context.expiration?.invalid && context.expiration?.touched">
-        <div *ngIf="context.expiration?.errors">Expiration is required.</div>
-      </div>
-    </ng-container>
-    <ng-container>
-      <label for="securityCode">Security Code</label>
-      <input class="input" type="number" formControlName="securityCode" />
-      <div
-        *ngIf="context.securityCode?.invalid && context.securityCode?.touched"
-      >
-        <div *ngIf="context.securityCode?.errors">
-          Security Code is required.
-        </div>
-      </div>
-    </ng-container>
-
+    <app-input
+      [control]="context.name"
+      controlName="name"
+      [validators]="validators"
+      inputType="text"
+    ></app-input>
+    <app-input
+      [control]="context.cardNumber"
+      controlName="card number"
+      [validators]="validators"
+      inputType="text"
+    ></app-input>
+    <app-input
+      [control]="context.expiration"
+      controlName="expiration"
+      [validators]="validators"
+      inputType="date"
+    ></app-input>
+    <app-input
+      [control]="context.securityCode"
+      controlName="security code"
+      [validators]="validators"
+    ></app-input>
     <button class="button" type="submit">Submit</button>
   </form>
 </div>
-
-{{ cardForm.value | json }}
-{{ cardForm.valid }}

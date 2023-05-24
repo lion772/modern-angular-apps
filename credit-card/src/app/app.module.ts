@@ -5,12 +5,11 @@ import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CardFormComponent } from './card-form/card-form.component';
 import { InputComponent } from './shared/input/input.component';
-import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 
 @NgModule({
   declarations: [AppComponent, CardFormComponent, InputComponent],
-  imports: [BrowserModule, ReactiveFormsModule, NgxMaskDirective, NgxMaskPipe],
-  providers: [provideNgxMask()],
+  imports: [BrowserModule, ReactiveFormsModule],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

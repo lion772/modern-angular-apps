@@ -1,30 +1,58 @@
 <div class="container">
-  <form [formGroup]="cardForm" (submit)="onSubmit()">
-    <app-input
-      [control]="context.name"
-      controlName="name"
-      [validators]="validators"
-      inputType="text"
-    ></app-input>
-    <app-input
-      [control]="context.cardNumber"
-      controlName="card number"
-      [validators]="validators"
-      inputType="text"
-    ></app-input>
-    <app-input
-      [control]="context.expiration"
-      controlName="expiration (MM/YY)"
-      [validators]="validators"
-      inputType="text"
-    ></app-input>
-    <app-input
-      [control]="context.securityCode"
-      controlName="security code"
-      [validators]="validators"
-    ></app-input>
-    <button [disabled]="!isValid" class="button is-primary" type="submit">
-      Submit
-    </button>
-  </form>
+  <div class="columns">
+    <div class="column">
+      <app-card
+        [name]="name"
+        [cardNumber]="cardNumber"
+        [expiration]="expiration"
+        [securityCode]="securityCode"
+      ></app-card>
+    </div>
+    <div class="column">
+      <form [formGroup]="cardForm" (submit)="onSubmit()">
+        <app-input
+          [control]="context.name"
+          controlName="Name"
+          [validators]="validators"
+          inputType="text"
+        ></app-input>
+        <app-input
+          [control]="context.cardNumber"
+          controlName="card number"
+          [validators]="validators"
+          inputType="text"
+        ></app-input>
+        <div class="columns">
+          <div class="column">
+            <app-input
+              [control]="context.expiration"
+              controlName="expiration (MM/YY)"
+              [validators]="validators"
+              inputType="text"
+            ></app-input>
+          </div>
+          <div class="column">
+            <app-input
+              [control]="context.securityCode"
+              controlName="security code"
+              [validators]="validators"
+            ></app-input>
+          </div>
+        </div>
+
+        <div class="buttons">
+          <button [disabled]="!isValid" class="button is-primary" type="submit">
+            Submit
+          </button>
+          <button
+            class="button is-warning"
+            type="button"
+            (click)="resetControl()"
+          >
+            Reset
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>

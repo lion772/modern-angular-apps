@@ -12,7 +12,7 @@ export class CardFormComponent implements OnInit {
     name: new FormControl('', [
       Validators.required,
       Validators.minLength(3),
-      Validators.maxLength(10),
+      Validators.maxLength(15),
     ]),
     cardNumber: new FormControl('', [
       Validators.required,
@@ -39,7 +39,27 @@ export class CardFormComponent implements OnInit {
   public ngOnInit(): void {}
 
   public onSubmit() {
-    console.log('first');
+    console.log('submitted');
+    this.resetControl();
+  }
+
+  public resetControl() {
+    this.cardForm.reset();
+  }
+
+  public get name(): string {
+    return this.cardForm.get('name')?.value;
+  }
+
+  public get cardNumber(): string {
+    return this.cardForm.get('cardNumber')?.value;
+  }
+
+  public get expiration(): string {
+    return this.cardForm.get('expiration')?.value;
+  }
+  public get securityCode(): string {
+    return this.cardForm.get('securityCode')?.value;
   }
 
   public get isValid(): boolean {

@@ -16,13 +16,15 @@
       [control]="context.expiration"
       controlName="expiration"
       [validators]="validators"
-      inputType="date"
+      inputType="text"
     ></app-input>
     <app-input
       [control]="context.securityCode"
       controlName="security code"
       [validators]="validators"
     ></app-input>
-    <button class="button" type="submit">Submit</button>
+    <button [disabled]="!isValid" class="button is-primary" type="submit">
+      Submit
+    </button>
   </form>
 </div>

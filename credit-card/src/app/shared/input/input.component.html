@@ -19,13 +19,14 @@
 
 <input
   class="input"
+  [ngClass]="{ 'is-danger': showErrors() }"
   [type]="inputType"
   [formControl]="control"
   (input)="onInput()"
 />
 <div *ngIf="control.invalid && control.touched">
   <ng-container *ngFor="let validator of validators">
-    <div *ngIf="control.errors?.[validator]">
+    <div *ngIf="control.errors?.[validator]" class="help is-danger">
       {{ validatorsObj[validator] }}
     </div>
   </ng-container>

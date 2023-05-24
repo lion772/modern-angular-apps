@@ -29,14 +29,24 @@ export class InputComponent implements OnInit {
   public onInput() {
     this.validatorsObj = {
       ...this.validatorsObj,
-      minlength: `${Math.abs(
-        this.control.errors?.['minlength']?.['requiredLength'] -
-          this.control.errors?.['minlength']?.['actualLength']
+      minlength: `${this.minLengthNecessary(
+        'minlength'
       )} character(s) are missing`,
-      maxlength: `You have ${Math.abs(
-        this.control.errors?.['maxlength']?.['requiredLength'] -
-          this.control.errors?.['maxlength']?.['actualLength']
+      maxlength: `You have ${this.minLengthNecessary(
+        'maxlength'
       )} letter(s) more than the limit`,
     };
+  }
+
+  public showErrors(): boolean {
+    const { invalid, touched } = this.control;
+    return invalid && touched;
+  }
+
+  public minLengthNecessary(query: string): number {
+    return Math.abs(
+      this.control.errors?.[query]?.['requiredLength'] -
+        this.control.errors?.[query]?.['actualLength']
+    );
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { DateFormControl } from '../date-form-control';
 
 @Component({
   selector: 'app-card-form',
@@ -15,9 +16,10 @@ export class CardFormComponent implements OnInit {
     ]),
     cardNumber: new FormControl('', [
       Validators.required,
-      Validators.maxLength(8),
+      Validators.minLength(16),
+      Validators.maxLength(16),
     ]),
-    expiration: new FormControl('', [Validators.required]),
+    expiration: new DateFormControl('', [Validators.required]),
     securityCode: new FormControl('', [
       Validators.required,
       Validators.minLength(3),
@@ -37,7 +39,10 @@ export class CardFormComponent implements OnInit {
   public ngOnInit(): void {}
 
   public onSubmit() {
-    if (this.cardForm.valid) {
-    }
+    console.log('first');
+  }
+
+  public get isValid(): boolean {
+    return this.cardForm.valid;
   }
 }

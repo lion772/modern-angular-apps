@@ -12,7 +12,7 @@ export class InputComponent implements OnInit {
   @Input() validators: string[] = [];
   @Input() inputType = 'text';
   public validatorsObj: { [key: string]: string } = {
-    required: `This ${this.controlName} must be filled!`,
+    required: '',
     minlength: '',
     maxlength: '',
   };

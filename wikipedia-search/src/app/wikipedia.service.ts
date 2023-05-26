@@ -3,7 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, filter, map, of } from 'rxjs';
 
 interface WikiData {
-  query: { search: Page[] };
+  query: {
+    search: Page[];
+  };
 }
 
 export interface Page {

@@ -17,7 +17,6 @@ export class SearchBarComponent {
 
   public onSubmitForm(e: any) {
     e.preventDefault();
-    console.log(this.term);
     this.termEmitter.emit(this.term);
   }
 }

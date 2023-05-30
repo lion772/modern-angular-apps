@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  AbstractControl,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MathValidators } from '../math-validators';
 
 @Component({
   selector: 'app-equation',
@@ -18,15 +14,7 @@ export class EquationComponent implements OnInit {
       b: new FormControl(this.randomNumber()),
       answer: new FormControl('', [Validators.required]),
     },
-    [
-      (form: AbstractControl) => {
-        const { a, b, answer } = form.value;
-        if (a + b === parseInt(answer)) {
-          return null;
-        }
-        return { addition: true };
-      },
-    ]
+    [MathValidators.addition]
   );
 
   public context = {

@@ -14,7 +14,7 @@ export class EquationComponent implements OnInit {
       b: new FormControl(this.randomNumber()),
       answer: new FormControl('', [Validators.required]),
     },
-    [MathValidators.addition]
+    [MathValidators.addition('answer', 'a', 'b')]
   );
 
   public context = {

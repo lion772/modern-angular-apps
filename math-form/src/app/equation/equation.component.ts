@@ -10,6 +10,7 @@ import { delay, filter, scan } from 'rxjs';
 })
 export class EquationComponent implements OnInit {
   public secondsPerSolution = 0;
+  public isCloser!: boolean;
   public mathForm = new FormGroup(
     {
       a: new FormControl(this.randomNumber()),
@@ -50,6 +51,25 @@ export class EquationComponent implements OnInit {
       });
   }
 
+  public onInput(): void {
+    if (this.answer) {
+      let closerAnswer = Math.abs(
+        ((this.a as number) + (this.b as number) - parseInt(this.answer)) /
+          ((this.a as number) + (this.b as number))
+      );
+
+      if (closerAnswer === 0) {
+        this.isCloser = false;
+      } else if (closerAnswer <= 0.2) {
+        this.isCloser = true;
+      } else if ((this.a === 0 || this.b === 0) && closerAnswer <= 0.2) {
+        this.isCloser = true;
+      } else {
+        this.isCloser = false;
+      }
+    }
+  }
+
   public randomNumber(): number {
     return Math.floor(Math.random() * 10);
   }
@@ -60,5 +80,8 @@ export class EquationComponent implements OnInit {
 
   public get b(): number | null | undefined {
     return this.mathForm.value.b;
+  }
+  public get answer(): string | null | undefined {
+    return this.mathForm.value.answer;
   }
 }

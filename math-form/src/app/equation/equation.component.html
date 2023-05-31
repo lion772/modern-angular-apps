@@ -1,6 +1,6 @@
 <form [formGroup]="mathForm">
   <div class="equation">{{ a }} + {{ b }} =</div>
-  <input appAnswerHighlight type="text" formControlName="answer" />
+  <input (input)="onInput()" [ngClass]="{'close': isCloser }" type="text" formControlName="answer" />
 </form>
 
 <div class="stats">

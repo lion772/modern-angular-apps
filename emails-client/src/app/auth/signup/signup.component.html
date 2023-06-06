@@ -8,28 +8,39 @@
     <app-input label="Username" [control]="username"></app-input>
   </div>
   <div class="field">
-    <app-input label="Password" [control]="password"></app-input>
+    <app-input
+      label="Password"
+      [control]="password"
+      type="password"
+    ></app-input>
   </div>
   <div class="field">
     <app-input
       label="Password Confirmation"
       [control]="passwordConfirmation"
+      type="password"
     ></app-input>
   </div>
-  <button
-    [disabled]="signupForm.errors?.['passwordsDontMatch'] || signupForm.invalid"
-    class="ui submit button primary"
-  >
-    Submit
-  </button>
   <div
     *ngIf="
-      signupForm.errors && password.touched && passwordConfirmation.touched
+      signupForm.errors &&
+      password.touched &&
+      password.dirty &&
+      passwordConfirmation.touched &&
+      passwordConfirmation.dirty
     "
-    class="ui pointing red basic label"
+    class="ui red basic label"
   >
     <p *ngIf="signupForm.errors?.['passwordsDontMatch']">
       Passwords do not match!
     </p>
+  </div>
+  <div>
+    <button
+      [disabled]="signupForm.errors?.['passwordsDontMatch'] || signupForm.invalid"
+      class="ui submit button primary"
+    >
+      Submit
+    </button>
   </div>
 </form>

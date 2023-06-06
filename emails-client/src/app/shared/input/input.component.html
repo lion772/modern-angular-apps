@@ -1,7 +1,23 @@
 <div class="field">
   <label>{{ label }}</label>
   <input type="text" [formControl]="control" />
-  <ng-container *ngIf="control.invalid && control.touched">
-    {{ control.errors | json }}
-  </ng-container>
+  <div
+    *ngIf="errors && control.invalid && control.touched"
+    class="ui pointing red basic label"
+  >
+    <p *ngIf="errors['required']">Field {{ label }} must be filled!</p>
+    <p *ngIf="errors['minlength']">
+      Field {{ label }} is missing
+      {{ lengthNecessary("minlength") }} character(s)
+    </p>
+    <p *ngIf="errors['maxlength']">
+      Field {{ label }} has {{ lengthNecessary("maxlength") }} character(s) more
+      than required
+    </p>
+    <p *ngIf="errors['nonUniqueUsername']">This username is taken!</p>
+    <p *ngIf="errors['noConnection']">
+      It seems you have no internet connection at the moment
+    </p>
+    <p *ngIf="errors['pattern']">Invalid format</p>
+  </div>
 </div>

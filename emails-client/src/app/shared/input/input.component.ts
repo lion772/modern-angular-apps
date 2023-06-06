@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, ValidationErrors } from '@angular/forms';
 
 @Component({
   selector: 'app-input',
@@ -9,4 +9,15 @@ import { FormControl } from '@angular/forms';
 export class InputComponent {
   @Input() label!: string;
   @Input() control!: FormControl;
+
+  public lengthNecessary(query: string): number {
+    return Math.abs(
+      this.errors?.[query]?.['requiredLength'] -
+        this.errors?.[query]?.['actualLength']
+    );
+  }
+
+  public get errors(): ValidationErrors | null {
+    return this.control.errors;
+  }
 }

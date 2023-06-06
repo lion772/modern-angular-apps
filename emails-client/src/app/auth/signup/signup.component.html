@@ -1,9 +1,5 @@
 <h3>Create an Account</h3>
-<form
-  class="ui form"
-  [formGroup]="signupForm"
-  (ngSubmit)="onSubmitForm($event)"
->
+<form class="ui form" [formGroup]="signupForm" (ngSubmit)="onSubmitForm()">
   <div class="field">
     <app-input label="Username" [control]="username"></app-input>
   </div>

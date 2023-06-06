@@ -5,16 +5,16 @@
   (ngSubmit)="onSubmitForm($event)"
 >
   <div class="field">
-    <label for="username">Username</label>
-    <app-input></app-input>
+    <app-input label="Username" [control]="username"></app-input>
   </div>
   <div class="field">
-    <label for="password">Password</label>
-    <app-input></app-input>
+    <app-input label="Password" [control]="password"></app-input>
   </div>
   <div class="field">
-    <label for="password">Password Confirmation</label>
-    <app-input></app-input>
+    <app-input
+      label="Password Confirmation"
+      [control]="passwordConfirmation"
+    ></app-input>
   </div>
   <button class="ui submit button primary">Submit</button>
 </form>

@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-input',
@@ -6,5 +7,6 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./input.component.scss'],
 })
 export class InputComponent {
-  @Input() formControlName = '';
+  @Input() label!: string;
+  @Input() control!: FormControl;
 }

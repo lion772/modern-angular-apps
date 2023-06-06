@@ -8,9 +8,22 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class SignupComponent implements OnInit {
   public signupForm = new FormGroup({
-    username: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
-    passwordConfirmation: new FormControl('', Validators.required),
+    username: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(20),
+    ]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(4),
+      Validators.maxLength(20),
+      Validators.pattern(/^[a-z0-9]+$/),
+    ]),
+    passwordConfirmation: new FormControl('', [
+      Validators.required,
+      Validators.minLength(4),
+      Validators.maxLength(20),
+    ]),
   });
 
   ngOnInit(): void {}
@@ -19,10 +32,13 @@ export class SignupComponent implements OnInit {
     event.preventDefault();
   }
 
-  public get username(): string | null | undefined {
-    return this.signupForm.value.username;
+  public get username(): FormControl {
+    return this.signupForm.get('username') as FormControl;
   }
-  public get password(): string | null | undefined {
-    return this.signupForm.value.password;
+  public get password(): FormControl {
+    return this.signupForm.get('password') as FormControl;
+  }
+  public get passwordConfirmation(): FormControl {
+    return this.signupForm.get('passwordConfirmation') as FormControl;
   }
 }

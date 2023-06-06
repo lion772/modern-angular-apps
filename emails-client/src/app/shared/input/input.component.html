@@ -1,1 +1,7 @@
-<input type="text" formControlName="formControlName" />
+<div class="field">
+  <label>{{ label }}</label>
+  <input type="text" [formControl]="control" />
+  <ng-container *ngIf="control?.invalid && control.touched">
+    {{ control.errors | json }}
+  </ng-container>
+</div>

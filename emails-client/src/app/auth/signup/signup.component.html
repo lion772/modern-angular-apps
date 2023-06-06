@@ -1,1 +1,20 @@
-<p>signup works!</p>
+<h3>Create an Account</h3>
+<form
+  class="ui form"
+  [formGroup]="signupForm"
+  (ngSubmit)="onSubmitForm($event)"
+>
+  <div class="field">
+    <label for="username">Username</label>
+    <app-input></app-input>
+  </div>
+  <div class="field">
+    <label for="password">Password</label>
+    <app-input></app-input>
+  </div>
+  <div class="field">
+    <label for="password">Password Confirmation</label>
+    <app-input></app-input>
+  </div>
+  <button class="ui submit button primary">Submit</button>
+</form>

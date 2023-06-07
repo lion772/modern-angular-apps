@@ -10,7 +10,6 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./signup.component.scss'],
 })
 export class SignupComponent implements OnInit {
-  public isUsernameTaken!: boolean;
   public signupForm = new FormGroup(
     {
       username: new FormControl(
@@ -46,11 +45,22 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {}
 
   public onSubmitForm(): void {
-    this.isUsernameTaken = false;
-    this.authService.signUp(this.signupValue).subscribe((res) => {
-      if (res) {
-        this.isUsernameTaken = true;
-      }
+    this.authService.signUp(this.signupValue).subscribe({
+      next: () => {
+        // Navigate away
+      },
+      error: (err) => {
+        const { status } = err;
+        if (!status) {
+          this.signupForm.setErrors({
+            noConnection: true,
+          });
+        } else {
+          this.signupForm.setErrors({
+            unknownError: true,
+          });
+        }
+      },
     });
   }
 

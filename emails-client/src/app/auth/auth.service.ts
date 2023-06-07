@@ -31,12 +31,10 @@ export class AuthService {
 
   public signUp(
     userCredentials: FormControl
-  ): Observable<SignupResponse | any[]> {
-    return this.http
-      .post<SignupResponse>(`${this.url}/signup`, userCredentials)
-      .pipe(
-        map((value) => value),
-        catchError(() => of([]))
-      );
+  ): Observable<SignupResponse | null> {
+    return this.http.post<SignupResponse>(
+      `${this.url}/signup`,
+      userCredentials
+    );
   }
 }

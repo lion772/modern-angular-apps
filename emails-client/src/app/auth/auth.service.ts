@@ -40,9 +40,7 @@ export class AuthService {
     userCredentials: FormControl
   ): Observable<SignupResponse | null> {
     return this.http
-      .post<SignupResponse>(`${this.url}/signup`, userCredentials, {
-        withCredentials: true,
-      })
+      .post<SignupResponse>(`${this.url}/signup`, userCredentials)
       .pipe(
         map((res) => {
           this.userSignedin$.next(true);
@@ -52,17 +50,12 @@ export class AuthService {
       );
   }
 
-  public checkAuth(): Observable<userAuthentication> {
-    return this.http
-      .get<userAuthentication>(`${this.url}/signedin`, {
-        withCredentials: true,
+  public checkAuth(): Observable<boolean> {
+    return this.http.get<userAuthentication>(`${this.url}/signedin`).pipe(
+      map(({ authenticated }) => {
+        this.userSignedin$.next(authenticated);
+        return authenticated;
       })
-      .pipe(
-        map((res) => {
-          console.log(res);
-          this.userSignedin$.next(true);
-          return res;
-        })
-      );
+    );
   }
 }

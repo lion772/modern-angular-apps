@@ -12,7 +12,12 @@
         >
       </ng-container>
       <ng-template #notlogged>
-        <a routerLink="/" [routerLinkActiveOptions]="{exact: true}" class="ui item" routerLinkActive="active">Sign In</a
+        <a
+          routerLink="/"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="ui item"
+          routerLinkActive="active"
+          >Sign In</a
         ><a routerLink="/signup" class="ui item" routerLinkActive="active"
           >Sign Up</a
         >

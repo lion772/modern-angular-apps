@@ -58,4 +58,12 @@ export class AuthService {
       })
     );
   }
+
+  public signOut() {
+    return this.http.post(`${this.url}/signout`, {}).pipe(
+      map(() => {
+        this.userSignedin$.next(false);
+      })
+    );
+  }
 }

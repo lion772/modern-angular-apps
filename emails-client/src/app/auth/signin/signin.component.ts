@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { UniqueUsername } from '../validators/unique-username';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signin',
@@ -28,12 +29,15 @@ export class SigninComponent {
     ]),
   });
 
-  public constructor(private authService: AuthService) {}
+  public constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   public onSubmitForm(): void {
     this.authService.signIn(this.signinValue).subscribe({
       next: () => {
-        // Navigate away
+        this.router.navigateByUrl('/inbox');
       },
       error: (err) => {
         const { status } = err;

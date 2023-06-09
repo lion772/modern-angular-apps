@@ -7,7 +7,7 @@ interface UsernameResponseAvailability {
   available: boolean;
 }
 
-interface SignupResponse {
+interface SignupSigninResponse {
   username: string;
 }
 
@@ -36,17 +36,23 @@ export class AuthService {
     );
   }
 
-  public signUp(
-    userCredentials: FormControl
-  ): Observable<SignupResponse | null> {
+  public signUp(userCredentials: FormControl): Observable<void> {
     return this.http
-      .post<SignupResponse>(`${this.url}/signup`, userCredentials)
+      .post<SignupSigninResponse>(`${this.url}/signup`, userCredentials)
       .pipe(
-        map((res) => {
+        map(() => {
           this.userSignedin$.next(true);
-          return res;
-        }),
-        catchError(() => of(null))
+        })
+      );
+  }
+
+  public signIn(userCredentials: FormControl): Observable<void> {
+    return this.http
+      .post<SignupSigninResponse>(`${this.url}/signin`, userCredentials)
+      .pipe(
+        map(() => {
+          this.userSignedin$.next(true);
+        })
       );
   }
 

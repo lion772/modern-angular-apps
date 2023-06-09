@@ -1,22 +1,14 @@
 import { Injectable } from '@angular/core';
-import {
-  CanLoad,
-  Route,
-  UrlSegment,
-  ActivatedRouteSnapshot,
-  RouterStateSnapshot,
-  UrlTree,
-  Resolve,
-} from '@angular/router';
+import { CanLoad, Route, UrlSegment, Router } from '@angular/router';
 import { Observable, pipe } from 'rxjs';
-import { take, skipWhile, filter, map } from 'rxjs/operators';
+import { take, skipWhile, map } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanLoad {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   canLoad(
     route: Route,
@@ -26,7 +18,13 @@ export class AuthGuard implements CanLoad {
       skipWhile((val) => val === null),
       //TypeScript non-null assertion operator: 'value!'
       map((value) => value!),
-      take(1)
+      take(1),
+      map((authenticated) => {
+        if (!authenticated) {
+          this.router.navigateByUrl('/');
+        }
+        return authenticated;
+      })
     );
   }
 }

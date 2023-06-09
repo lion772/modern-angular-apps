@@ -21,7 +21,7 @@ interface userAuthentication {
 })
 export class AuthService {
   private url = 'https://api.angular-email.com/auth';
-  public userSignedin$ = new BehaviorSubject<boolean>(false);
+  public userSignedin$ = new BehaviorSubject<boolean | null>(null);
 
   public constructor(private http: HttpClient) {}
 

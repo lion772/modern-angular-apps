@@ -8,6 +8,15 @@ export interface EmailsResponse {
   from: 'string';
 }
 
+export interface EmailResponse {
+  id: 'string';
+  subject: 'string';
+  text: 'string';
+  to: 'string';
+  from: 'string';
+  html: 'string';
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -21,5 +30,8 @@ export class EmailService {
       map((res) => res),
       catchError(() => of(null))
     );
+  }
+  public getEmailById(emailId: string): Observable<EmailResponse> {
+    return this.http.get<EmailResponse>(`${this.rootUrl}/emails/${emailId}`);
   }
 }

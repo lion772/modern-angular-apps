@@ -1,1 +1,5 @@
-<p>email-show works!</p>
+<div *ngIf="emailProps$ | async as email">
+  <p>{{ email.subject }}</p>
+  <p>{{ email.text }}</p>
+  <p>{{ email.to }}</p>
+</div>

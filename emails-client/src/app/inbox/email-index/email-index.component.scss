@@ -1,3 +1,21 @@
 .content {
   cursor: pointer;
 }
+
+.item a {
+  color: black;
+}
+
+a {
+  &.active {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  &.active:before {
+    content: ">";
+    font-size: 20px;
+    margin-right: 4px;
+  }
+}

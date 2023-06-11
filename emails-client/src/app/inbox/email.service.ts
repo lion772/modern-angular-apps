@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
 
-interface EmailsResponse {
+export interface EmailsResponse {
   id: 'string';
   subject: 'string';
   from: 'string';
@@ -16,12 +16,10 @@ export class EmailService {
 
   public constructor(private http: HttpClient) {}
 
-  public getEmails(): Observable<EmailsResponse> {
-    return this.http.get<EmailsResponse>(`${this.rootUrl}/emails`).pipe(
-      map((res) => {
-        console.log(res);
-        return res;
-      })
+  public getEmails(): Observable<EmailsResponse[] | null> {
+    return this.http.get<EmailsResponse[]>(`${this.rootUrl}/emails`).pipe(
+      map((res) => res),
+      catchError(() => of(null))
     );
   }
 }

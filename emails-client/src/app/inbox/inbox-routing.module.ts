@@ -4,16 +4,22 @@ import { HomeComponent } from './home/home.component';
 import { EmailShowComponent } from './email-show/email-show.component';
 import { PlaceholderComponent } from './placeholder/placeholder.component';
 import { EmailResolverService } from './email-resolver.service';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
     children: [
+      { path: 'notfound', component: NotFoundComponent },
       { path: '', component: PlaceholderComponent },
-      { path: ':emailId', component: EmailShowComponent, resolve: {
-        email: EmailResolverService
-      } },
+      {
+        path: ':emailId',
+        component: EmailShowComponent,
+        resolve: {
+          email: EmailResolverService,
+        },
+      },
     ],
   },
 ];

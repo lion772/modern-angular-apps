@@ -2,22 +2,29 @@ import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   Resolve,
+  Router,
   RouterStateSnapshot,
 } from '@angular/router';
 import { Email } from './email';
-import { Observable } from 'rxjs';
+import { EMPTY, Observable, catchError, map, of } from 'rxjs';
 import { EmailService } from './email.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class EmailResolverService implements Resolve<Email> {
-  constructor(private emailService: EmailService) {}
+export class EmailResolverService implements Resolve<Email | null> {
+  constructor(private emailService: EmailService, private router: Router) {}
 
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): Email | Observable<Email> | Promise<Email> {
-    return this.emailService.getEmailById(route.params['emailId']);
+  ): Email | Observable<Email | null> | Promise<Email | null> {
+    return this.emailService.getEmailById(route.params['emailId']).pipe(
+      catchError(() => {
+        this.router.navigateByUrl('/inbox/notfound');
+        return EMPTY;
+      }),
+      map((res) => res)
+    );
   }
 }

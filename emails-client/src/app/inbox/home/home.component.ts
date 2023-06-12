@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  public emailList$: Observable<EmailsResponse[] | null> =
+  public emailList$: Observable<EmailsResponse[]> =
     this.emailService.getEmails();
 
   public constructor(

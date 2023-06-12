@@ -1,5 +1,5 @@
-<div *ngIf="emailProps$ | async as email">
-  <p>{{ email.subject }}</p>
-  <p>{{ email.text }}</p>
-  <p>{{ email.to }}</p>
+<div *ngIf="emailProps">
+  <p>{{ emailProps.subject }}</p>
+  <p>{{ emailProps.text }}</p>
+  <p>{{ emailProps.to }}</p>
 </div>

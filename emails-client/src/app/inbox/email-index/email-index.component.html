@@ -1,14 +1,17 @@
 <div class="ui celled list">
-  <div class="item" *ngFor="let email of emails">
-    <div class="content">
-      <a [routerLink]="email.id" routerLinkActive="active">
-        <div class="header">
-          {{ email.subject }}
-        </div>
-        <p>
-          {{ email.from }}
-        </p>
-      </a>
+  <ng-container *ngIf="emails && emails.length > 0; else noEmailsFound">
+    <div class="item" *ngFor="let email of emails">
+      <div class="content">
+        <a [routerLink]="email.id" routerLinkActive="active">
+          <div class="header">
+            {{ email.subject }}
+          </div>
+          <p>
+            {{ email.from }}
+          </p>
+        </a>
+      </div>
     </div>
-  </div>
+  </ng-container>
+  <ng-template #noEmailsFound>No emails found</ng-template>
 </div>

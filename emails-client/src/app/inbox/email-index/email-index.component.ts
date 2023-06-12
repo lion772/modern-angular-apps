@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { EmailsResponse } from '../email.service';
+import { EmailsResponse } from '../email';
 
 @Component({
   selector: 'app-email-index',

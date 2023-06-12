@@ -1,21 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, of, switchMap } from 'rxjs';
-
-export interface EmailsResponse {
-  id: string;
-  subject: string;
-  from: string;
-}
-
-export interface EmailResponse {
-  id: string;
-  subject: string;
-  text: string;
-  to: string;
-  from: string;
-  html: string;
-}
+import { Email, EmailsResponse } from './email';
 
 @Injectable({
   providedIn: 'root',
@@ -29,7 +15,7 @@ export class EmailService {
     return this.http.get<EmailsResponse[]>(`${this.rootUrl}/emails`);
   }
 
-  public getEmailById(emailId: string): Observable<EmailResponse> {
-    return this.http.get<EmailResponse>(`${this.rootUrl}/emails/${emailId}`);
+  public getEmailById(emailId: string): Observable<Email> {
+    return this.http.get<Email>(`${this.rootUrl}/emails/${emailId}`);
   }
 }

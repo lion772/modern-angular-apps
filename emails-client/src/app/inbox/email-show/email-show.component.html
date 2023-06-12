@@ -1,5 +1,16 @@
-<div *ngIf="emailProps">
-  <p>{{ emailProps.subject }}</p>
-  <p>{{ emailProps.text }}</p>
-  <p>{{ emailProps.to }}</p>
+<div class="header">
+  <div *ngIf="emailProps">
+    <div>
+      <h3>
+        {{ emailProps.subject }}
+      </h3>
+      <div>
+        From: <i>{{ emailProps.from }}</i>
+      </div>
+      <div>
+        To: <i>{{ emailProps.to }}</i>
+      </div>
+    </div>
+    <p>{{ emailProps.text }}</p>
+  </div>
 </div>

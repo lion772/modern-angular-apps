@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { EmailService, EmailsResponse } from '../email.service';
+import { EmailService } from '../email.service';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
+import { EmailsResponse } from '../email';
 
 @Component({
   selector: 'app-home',

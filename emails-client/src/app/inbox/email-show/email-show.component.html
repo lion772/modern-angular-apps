@@ -1,16 +1,16 @@
 <div class="header">
-  <div *ngIf="emailProps">
+  <div>
     <div>
       <h3>
-        {{ emailProps.subject }}
+        {{ email.subject }}
       </h3>
       <div>
-        From: <i>{{ emailProps.from }}</i>
+        From: <i>{{ email.from }}</i>
       </div>
       <div>
-        To: <i>{{ emailProps.to }}</i>
+        To: <i>{{ email.to }}</i>
       </div>
     </div>
-    <p>{{ emailProps.text }}</p>
+    <p>{{ email.text }}</p>
   </div>
 </div>

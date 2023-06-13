@@ -1,1 +1,8 @@
-<p>email-form works!</p>
+<form [formGroup]="emailForm">
+  <input type="text" formControlName="id" />
+  <input type="text" formControlName="to" />
+  <input type="text" formControlName="subject" />
+  <input type="text" formControlName="html" />
+  <input type="text" formControlName="text" />
+  <input type="text" formControlName="from" />
+</form>

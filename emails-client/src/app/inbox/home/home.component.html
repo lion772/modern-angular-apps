@@ -1,6 +1,7 @@
 <div class="ui grid stackable">
   <div class="five wide column">
     <ng-container *ngIf="emailList$ | async as emailList">
+      <app-email-create></app-email-create>
       <app-email-index [emails]="emailList"></app-email-index>
     </ng-container>
   </div>
@@ -8,3 +9,4 @@
     <router-outlet></router-outlet>
   </div>
 </div>
+

@@ -11,6 +11,8 @@
         To: <i>{{ email.to }}</i>
       </div>
     </div>
-    <p>{{ email.text }}</p>
   </div>
 </div>
+
+<div class="ui divider"></div>
+<div [innerHTML]="email.html"></div>

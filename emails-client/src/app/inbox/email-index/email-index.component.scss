@@ -1,5 +1,13 @@
 .content {
   cursor: pointer;
+  width: 90%;
+}
+
+.trim {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 100%;
 }
 
 .item a {

@@ -14,11 +14,11 @@ export class EmailFormComponent implements OnInit {
   ngOnInit(): void {
     const { to, subject, html, text, from } = this.email;
     this.emailForm = new FormGroup({
-      to: new FormControl(to, [Validators.required]),
+      to: new FormControl(to, [Validators.required, Validators.email]),
       subject: new FormControl(subject, [Validators.required]),
       html: new FormControl(html, [Validators.required]),
       text: new FormControl(text, [Validators.required]),
-      from: new FormControl(from, [Validators.required]),
+      from: new FormControl({ value: from, disabled: true }),
     });
   }
 

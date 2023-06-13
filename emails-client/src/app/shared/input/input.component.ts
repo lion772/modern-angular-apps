@@ -9,7 +9,8 @@ import { FormControl, ValidationErrors } from '@angular/forms';
 export class InputComponent {
   @Input() label!: string;
   @Input() control!: FormControl;
-  @Input('type') inputType = 'text';
+  @Input() inputType = 'text';
+  @Input() controlType = 'input';
 
   public lengthNecessary(query: string): number {
     return Math.abs(

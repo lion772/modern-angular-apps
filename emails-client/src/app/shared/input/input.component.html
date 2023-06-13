@@ -1,11 +1,22 @@
 <div class="field">
   <label>{{ label }}</label>
-  <input [type]="inputType" [formControl]="control" />
+
+  <input
+    *ngIf="controlType === 'input'; else textarea"
+    [type]="inputType"
+    [formControl]="control"
+  />
+
+  <ng-template #textarea>
+    <textarea></textarea>
+  </ng-template>
+
   <div
     *ngIf="errors && control.invalid && control.touched"
     class="ui pointing red basic label"
   >
     <p *ngIf="errors['required']">Field {{ label }} must be filled!</p>
+    <p *ngIf="errors['email']">Enter a valid email!</p>
     <p *ngIf="errors['minlength']">
       Field {{ label }} is missing
       {{ lengthNecessary("minlength") }} character(s)

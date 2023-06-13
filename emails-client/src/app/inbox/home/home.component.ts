@@ -13,11 +13,7 @@ export class HomeComponent implements OnInit {
   public emailList$: Observable<EmailsResponse[]> =
     this.emailService.getEmails();
 
-  public constructor(
-    private emailService: EmailService,
-    private route: ActivatedRoute,
-    private router: Router
-  ) {}
+  public constructor(private emailService: EmailService) {}
 
   public ngOnInit(): void {}
 }

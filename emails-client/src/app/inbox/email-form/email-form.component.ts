@@ -21,4 +21,24 @@ export class EmailFormComponent implements OnInit {
       from: new FormControl(from, [Validators.required]),
     });
   }
+
+  public get to(): FormControl {
+    return this.emailForm.get('to') as FormControl;
+  }
+
+  public get subject(): FormControl {
+    return this.emailForm.get('subject') as FormControl;
+  }
+
+  public get html(): FormControl {
+    return this.emailForm.get('html') as FormControl;
+  }
+
+  public get text(): FormControl {
+    return this.emailForm.get('text') as FormControl;
+  }
+
+  public get from(): FormControl {
+    return this.emailForm.get('from') as FormControl;
+  }
 }

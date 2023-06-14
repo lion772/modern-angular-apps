@@ -21,9 +21,20 @@ interface userAuthentication {
 })
 export class AuthService {
   private url = 'https://api.angular-email.com/auth';
+  private _username: string = '';
   public userSignedin$ = new BehaviorSubject<boolean | null>(null);
 
   public constructor(private http: HttpClient) {}
+
+  public setUsername(username: string): void {
+    localStorage.setItem('username', username);
+    this._username = username;
+  }
+
+  public getUsername(): string {
+    let username = localStorage.getItem('username');
+    return username ? username : this._username;
+  }
 
   public checkUsernameExists(
     username: string
@@ -40,8 +51,9 @@ export class AuthService {
     return this.http
       .post<SignupSigninResponse>(`${this.url}/signup`, userCredentials)
       .pipe(
-        map(() => {
+        map(({ username }) => {
           this.userSignedin$.next(true);
+          this.setUsername(username);
         })
       );
   }
@@ -50,8 +62,9 @@ export class AuthService {
     return this.http
       .post<SignupSigninResponse>(`${this.url}/signin`, userCredentials)
       .pipe(
-        map(() => {
+        map(({ username }) => {
           this.userSignedin$.next(true);
+          this.setUsername(username);
         })
       );
   }
@@ -69,6 +82,7 @@ export class AuthService {
     return this.http.post(`${this.url}/signout`, {}).pipe(
       map(() => {
         this.userSignedin$.next(false);
+        localStorage.removeItem('username');
       })
     );
   }

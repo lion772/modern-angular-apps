@@ -18,4 +18,12 @@ export class EmailService {
   public getEmailById(emailId: string): Observable<Email> {
     return this.http.get<Email>(`${this.rootUrl}/emails/${emailId}`);
   }
+
+  public sendEmail(email: Email): Observable<any> {
+    return this.http.post(`${this.rootUrl}/emails`, email).pipe(
+      map((res) => {
+        console.log(res);
+      })
+    );
+  }
 }

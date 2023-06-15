@@ -26,15 +26,12 @@ export class EmailCreateComponent implements OnInit {
     };
   }
 
-  ngOnInit(): void {
-    console.log(this.email);
-  }
+  ngOnInit(): void {}
 
   onSubmitEmailForm(emailSubmitted: Email) {
     this.email = { ...this.email, ...emailSubmitted };
-    console.log(this.email);
     this.emailService
-      .sendEmail(emailSubmitted)
+      .sendEmail(this.email)
       .subscribe({ next: () => (this.showModal = false) });
   }
 }

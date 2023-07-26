@@ -6,9 +6,10 @@ import { CardsComponent } from './components/cards/cards.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ClassDirective } from './directives/class.directive';
 import { TimesDirective } from './directives/times.directive';
+import { LocationIdPipe } from './pipes/location-id.pipe';
 
 @NgModule({
-  declarations: [AppComponent, CardsComponent, ClassDirective, TimesDirective],
+  declarations: [AppComponent, CardsComponent, ClassDirective, TimesDirective, LocationIdPipe],
   imports: [BrowserModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],

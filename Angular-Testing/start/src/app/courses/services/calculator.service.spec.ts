@@ -8,6 +8,8 @@ describe("CalculatorService", () => {
   beforeEach(() => {
     loggerSpy = jasmine.createSpyObj("LoggerService", ["log"]);
 
+    //Mock the all the dependencies of the service to test it in isolation,
+    //assuming that all other parts of the appplication with which the calculator interacts are working correctly.
     TestBed.configureTestingModule({
       providers: [
         CalculatorService,

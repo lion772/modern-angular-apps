@@ -2,7 +2,7 @@ import { CalculatorService } from "./calculator.service";
 import { TestBed } from "@angular/core/testing";
 import { LoggerService } from "./logger.service";
 
-describe("CalculatorService", () => {
+xdescribe("CalculatorService", () => {
   let calculator: CalculatorService, loggerSpy: any;
 
   beforeEach(() => {

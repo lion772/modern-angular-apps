@@ -1,6 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Email } from '../email';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
@@ -12,16 +17,37 @@ export class EmailFormComponent implements OnInit {
   @Input() email!: Email;
   @Output() emailSubmit = new EventEmitter();
   public emailForm!: FormGroup;
+  public emailFormKeys = ['from', 'to', 'subject', 'text'];
 
-  public constructor(private authService: AuthService) {}
+  public constructor(private _fb: FormBuilder) {}
 
-  ngOnInit(): void {
-    const { to, subject, html, text, from } = this.email;
-    this.emailForm = new FormGroup({
-      to: new FormControl(to, [Validators.required, Validators.email]),
-      subject: new FormControl(subject, [Validators.required]),
-      text: new FormControl(text, [Validators.required]),
-      from: new FormControl({ value: from, disabled: true }),
+  public ngOnInit(): void {
+    this.emailForm = this._fb.group({});
+    this.emailFormKeys.forEach((key) => {
+      switch (key) {
+        case 'to':
+          this.emailForm.addControl(
+            key,
+            new FormControl('', [Validators.required, Validators.email])
+          );
+          break;
+        case 'from':
+          this.emailForm.addControl(
+            key,
+            new FormControl({ value: this.email.from, disabled: true })
+          );
+          break;
+        default:
+          this.emailForm.addControl(
+            key,
+            new FormControl('', [Validators.required])
+          );
+          break;
+      }
+      this.emailForm.addControl(
+        key,
+        new FormControl('', [Validators.required])
+      );
     });
   }
 

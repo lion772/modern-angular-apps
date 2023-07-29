@@ -5,7 +5,7 @@ import {
 } from "@angular/common/http/testing";
 import { CoursesService } from "./courses.service";
 import { Course } from "../model/course";
-import { COURSES } from "../../../../server/db-data";
+import { COURSES, findLessonsForCourse } from "../../../../server/db-data";
 import { HttpErrorResponse } from "@angular/common/http";
 import { Lesson } from "../model/lesson";
 
@@ -97,15 +97,24 @@ describe("CourseService", () => {
 
   it("should find a list of lessons", () => {
     courseService.findLessons(12).subscribe((lessons: Lesson[]) => {
-      expect(lessons).toBeTruthy();
       expect(lessons.length).toBe(3);
     });
 
     const req = httpTestingController.expectOne(
-      "/api/lessons?courseId=12&filter=&sortOrder=asc&pageNumber=0&pageSize=3"
+      (req) => req.url === "/api/lessons"
     );
 
     expect(req.request.method).toEqual("GET");
+
+    expect(req.request.params.get("courseId")).toEqual("12");
+    expect(req.request.params.get("filter")).toEqual("");
+    expect(req.request.params.get("sortOrder")).toEqual("asc");
+    expect(req.request.params.get("pageNumber")).toEqual("0");
+    expect(req.request.params.get("pageSize")).toEqual("3");
+
+    req.flush({
+      payload: findLessonsForCourse(12).slice(0, 3),
+    });
   });
 
   afterEach(() => {

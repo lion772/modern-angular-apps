@@ -6,6 +6,8 @@ import {
 import { CoursesService } from "./courses.service";
 import { Course } from "../model/course";
 import { COURSES } from "../../../../server/db-data";
+import { HttpErrorResponse } from "@angular/common/http";
+import { Lesson } from "../model/lesson";
 
 describe("CourseService", () => {
   let courseService: CoursesService,
@@ -68,6 +70,42 @@ describe("CourseService", () => {
     );
 
     req.flush({ ...COURSES[12], ...changes });
+  });
+
+  it("should give an error if save course fails", () => {
+    const changes: Partial<Course> = {
+      titles: { description: "New Title" },
+    };
+
+    courseService.saveCourse(12, changes).subscribe({
+      next: () => {
+        fail("The course operation has failed");
+      },
+      error: (err: HttpErrorResponse) => {
+        expect(err.status).toBe(500);
+      },
+    });
+    const req = httpTestingController.expectOne("/api/courses/12");
+
+    expect(req.request.method).toEqual("PUT");
+
+    req.flush("Save course failed", {
+      status: 500,
+      statusText: "Internal Server Error",
+    });
+  });
+
+  it("should find a list of lessons", () => {
+    courseService.findLessons(12).subscribe((lessons: Lesson[]) => {
+      expect(lessons).toBeTruthy();
+      expect(lessons.length).toBe(3);
+    });
+
+    const req = httpTestingController.expectOne(
+      "/api/lessons?courseId=12&filter=&sortOrder=asc&pageNumber=0&pageSize=3"
+    );
+
+    expect(req.request.method).toEqual("GET");
   });
 
   afterEach(() => {

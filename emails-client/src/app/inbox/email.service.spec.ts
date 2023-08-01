@@ -6,7 +6,7 @@ import {
 import { EmailService } from './email.service';
 import { EMAILS } from './db-data';
 
-fdescribe('EmailService', () => {
+describe('EmailService', () => {
   let emailService: EmailService, httpTestingController: HttpTestingController;
 
   beforeEach(() => {

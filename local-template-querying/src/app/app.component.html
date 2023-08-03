@@ -1,26 +1,8 @@
-<app-course-detail></app-course-detail>
 <app-course-detail #courseDetailComponentRef></app-course-detail>
-<button (click)="onClick()">Click</button>
+<button mat-raised-button color="accent" (click)="onClick()">Click</button>
 
 <div class="container" #containerRef>
-  <mat-card
-    *ngFor="let course of courses"
-    class="course-card mat-elevation-z10"
-  >
-    <mat-card-header>
-      <mat-card-title>{{ course.titles.description }}</mat-card-title>
-    </mat-card-header>
-
-    <img mat-card-image [src]="course.iconUrl" />
-
-    <mat-card-content>
-      <p>{{ course.titles.description }}</p>
-    </mat-card-content>
-
-    <mat-card-actions class="course-actions">
-      <button mat-raised-button color="primary">VIEW COURSE</button>
-
-      <button mat-raised-button color="accent">EDIT</button>
-    </mat-card-actions>
-  </mat-card>
+  <ng-container *ngFor="let course of courses">
+    <app-course-detail [course]="course"></app-course-detail>
+  </ng-container>
 </div>

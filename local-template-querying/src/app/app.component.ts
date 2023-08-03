@@ -1,11 +1,24 @@
-import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  ViewChild,
+  OnInit,
+  AfterViewInit,
+  AfterViewChecked,
+  ViewChildren,
+  QueryList,
+} from '@angular/core';
 import { COURSES } from 'src/data';
 import { CourseDetailComponent } from './components/course-detail/course-detail.component';
 
-interface Course {
+export interface Course {
   iconUrl: string;
   id: string;
-  titles: { description: string };
+  titles: { description: string; longDescription: string };
+  category: string;
+  seqNo: number;
+  url: string;
+  lessonsCount: number;
 }
 
 @Component({
@@ -13,12 +26,9 @@ interface Course {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit {
-  public courses: Course[] = [];
-
-  ngOnInit(): void {
-    this.courses = Object.values(COURSES);
-  }
+export class AppComponent implements AfterViewInit {
+  public courses: Course[] = Object.values(COURSES);
+  public course = this.courses[0];
 
   @ViewChild(CourseDetailComponent)
   courseDetailComponentInstance!: CourseDetailComponent;
@@ -29,9 +39,21 @@ export class AppComponent implements OnInit {
   @ViewChild('containerRef')
   container!: ElementRef;
 
-  public onClick(): void {
+  @ViewChild('imageRef')
+  imgRef!: ElementRef;
+
+  @ViewChildren(CourseDetailComponent, { read: ElementRef })
+  courseRefs!: QueryList<ElementRef>;
+
+  public ngAfterViewInit(): void {
     console.log(this.courseDetailComponentInstance);
     console.log(this.courseDetailRef);
     console.log(this.container);
+    console.log(this.courseRefs);
+    this.courseRefs.changes.subscribe((cards) => console.log(cards));
+  }
+
+  public onClick(): void {
+    this.courses.push(this.course);
   }
 }

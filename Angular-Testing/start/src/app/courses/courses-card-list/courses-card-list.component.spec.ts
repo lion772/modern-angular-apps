@@ -6,7 +6,7 @@ import { By } from "@angular/platform-browser";
 
 import { setupCourses } from "../common/setup-test-data";
 
-fdescribe("CoursesCardListComponent", () => {
+describe("CoursesCardListComponent", () => {
   let component: CoursesCardListComponent;
   let fixture: ComponentFixture<CoursesCardListComponent>;
   let el: DebugElement;

@@ -4,11 +4,9 @@
       <mat-card-title>{{ course.titles.description }}</mat-card-title>
     </mat-card-header>
 
-    <img mat-card-image [src]="course.iconUrl" #imageRef />
-
-    <mat-card-content>
-      <p>{{ course.titles.description }}</p>
-    </mat-card-content>
+    <ng-content select="app-course-image"></ng-content>
+    <ng-content select="p"></ng-content>
+    <ng-content select="mat-card-content"></ng-content>
 
     <mat-card-actions class="course-actions">
       <button mat-raised-button color="primary">VIEW COURSE</button>

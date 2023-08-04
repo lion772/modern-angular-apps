@@ -10,14 +10,11 @@ body {
 }
 
 .container {
+  background-color: aliceblue;
   width: 100vw;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-mat-card {
-  width: 400px;
 }

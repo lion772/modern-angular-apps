@@ -27,6 +27,20 @@
           *ngIf="course.iconUrl"
         ></app-course-image>
 
+        <ng-container *ngIf="!course.iconUrl">
+          <ng-template #blankImage let-description="title">
+            <p class="warn">{{ description }}: No image is available</p>
+          </ng-template>
+
+          <ng-container
+            *ngTemplateOutlet="
+              blankImage;
+              context: { title: course.titles.description }
+            "
+          >
+          </ng-container>
+        </ng-container>
+
         <!-- <app-course-image
           [src]="courses[0].iconUrl"
           #imageRef

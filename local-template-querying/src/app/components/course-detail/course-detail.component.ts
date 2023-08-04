@@ -7,6 +7,7 @@ import {
   ElementRef,
   Input,
   QueryList,
+  TemplateRef,
   ViewChild,
 } from '@angular/core';
 import { Course } from 'src/app/app.component';
@@ -26,6 +27,9 @@ export class CourseDetailComponent implements AfterViewInit, AfterContentInit {
 
   @ContentChildren(CourseImageComponent, { read: ElementRef })
   imagesRef!: QueryList<ElementRef>;
+
+  @Input()
+  noImageTpl!: TemplateRef<any>;
 
   ngAfterViewInit(): void {
     console.log('Course Detail instance: ', this.imageRef);

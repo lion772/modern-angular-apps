@@ -7,7 +7,20 @@
     <ng-content select="app-course-image"></ng-content>
     <ng-content select="p"></ng-content>
     <ng-content select="mat-card-content"></ng-content>
-    <ng-content></ng-content>
+    <ng-content
+      select="app-course-image"
+      *ngIf="course.iconUrl; else noImage"
+    ></ng-content>
+    {{ course.iconUrl }}
+    <ng-template #noImage>
+      <ng-container
+        *ngTemplateOutlet="
+          noImageTpl;
+          context: { title: course.titles.description }
+        "
+      >
+      </ng-container>
+    </ng-template>
 
     <mat-card-actions class="course-actions">
       <button mat-raised-button color="primary">VIEW COURSE</button>

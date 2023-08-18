@@ -5,21 +5,29 @@
   />
 </div>
 
-<div class="courses" *ngIf="courses[0] as course">
-  <course-card
-    highlighted
-    #highlighter="hl"
-    (toggleHighlight)="onToggle($event)"
-    (courseSelected)="onCourseSelected($event)"
-    [course]="course"
-  >
-    <course-image
-      [src]="course.iconUrl"
-      *ngxUnless="!course.iconUrl"
-    ></course-image>
+<div class="courses" *ngIf="courses">
+  <ng-container *ngFor="let course of courses">
+    <course-card
+      highlighted
+      #highlighter="hl"
+      [noImageTpl]="noImageTpl"
+      (toggleHighlight)="onToggle($event)"
+      (courseSelected)="onCourseSelected($event)"
+      [course]="course"
+    >
+      <course-image
+        [src]="course.iconUrl"
+        *ngxUnless="!course.iconUrl"
+      ></course-image>
 
-    <div class="course-description" (dblclick)="highlighter.toggle()">
-      {{ course.longDescription }}
-    </div>
-  </course-card>
+      <ng-template #noImageTpl let-description="description">
+        No Image Found! <br />
+        {{ description }}
+      </ng-template>
+
+      <div class="course-description" (dblclick)="highlighter.toggle()">
+        {{ course.longDescription }}
+      </div>
+    </course-card>
+  </ng-container>
 </div>

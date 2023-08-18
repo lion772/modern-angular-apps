@@ -1,0 +1,33 @@
+<div class="top-menu">
+  <img
+    class="logo"
+    src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png"
+  />
+</div>
+
+<div class="courses" *ngIf="courses">
+  <ng-container *ngFor="let course of courses">
+    <course-card
+      highlighted
+      #highlighter="hl"
+      [noImageTpl]="noImageTpl"
+      (toggleHighlight)="onToggle($event)"
+      (courseSelected)="onCourseSelected($event)"
+      [course]="course"
+    >
+      <course-image
+        [src]="course.iconUrl"
+        *ngxUnless="!course.iconUrl"
+      ></course-image>
+
+      <ng-template #noImageTpl let-description="description">
+        No Image Found! <br />
+        {{ description }}
+      </ng-template>
+
+      <div class="course-description" (dblclick)="highlighter.toggle()">
+        {{ course.longDescription }}
+      </div>
+    </course-card>
+  </ng-container>
+</div>

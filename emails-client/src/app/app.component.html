@@ -4,6 +4,7 @@
 
     <div class="right menu">
       <ng-container *ngIf="isUserSignedin | async; else notlogged">
+        
         <a routerLink="/inbox" class="ui item" routerLinkActive="active"
           >Inbox</a
         >
@@ -24,5 +25,13 @@
       </ng-template>
     </div>
   </div>
+  <ng-container *ngIf="isUserSignedin | async; else displayMessage"></ng-container>
+
+  <ng-template #displayMessage>
+    <ng-container *ngIf="(message$ | async) as message">
+      <h2>{{message}}</h2>
+    </ng-container>
+  </ng-template>
+  
   <router-outlet></router-outlet>
 </div>

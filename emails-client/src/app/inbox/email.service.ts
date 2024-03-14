@@ -1,17 +1,21 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, map, of, switchMap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Email, EmailsResponse } from './email';
 
-@Injectable({
-  providedIn: 'root',
-})
+interface UsernameResponse {
+  username: string;
+}
+
+@Injectable()
 export class EmailService {
   public rootUrl = 'https://api.angular-email.com';
 
-  public constructor(private http: HttpClient) {}
+  public constructor(private http: HttpClient) {
+    console.log('EmailService has been initialized...');
+  }
 
-  public getEmails(): Observable<EmailsResponse[]> {
+  public getEmails() {
     return this.http.get<EmailsResponse[]>(`${this.rootUrl}/emails`);
   }
 
@@ -19,11 +23,17 @@ export class EmailService {
     return this.http.get<Email>(`${this.rootUrl}/emails/${emailId}`);
   }
 
-  public sendEmail(email: Email): Observable<any> {
-    return this.http.post(`${this.rootUrl}/emails`, email).pipe(
-      map((res) => {
-        console.log(res);
-      })
+  public sendEmail(email: Email): Observable<UsernameResponse> {
+    return this.http.post<UsernameResponse>(`${this.rootUrl}/emails`, email);
+  }
+
+  public updateUsername(
+    newUsername: string,
+    emailId: string,
+  ): Observable<UsernameResponse | null> {
+    return this.http.put<UsernameResponse>(
+      `${this.rootUrl}/emails/${emailId}`,
+      { username: newUsername },
     );
   }
 }

@@ -1,6 +1,6 @@
-<div (click)="onDismissClick()" class="ui dimmer visible active">
-  <div (click)="$event.stopPropagation()" class="ui modal visible active">
-    <i class="close icon" (click)="onDismissClick()"></i>
+<button (click)="onDismissClick()" class="ui dimmer visible active">
+  <button (click)="$event.stopPropagation()" class="ui modal visible active">
+    <button class="close icon" (click)="onDismissClick()">X</button>
     <div class="header">
       <ng-content select="[modalTitle]"></ng-content>
     </div>
@@ -13,5 +13,5 @@
     <div class="actions">
       <ng-content select="[modalFooter]"></ng-content>
     </div>
-  </div>
-</div>
+  </button>
+</button>

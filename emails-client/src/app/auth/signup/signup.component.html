@@ -37,7 +37,9 @@
   </div>
   <div>
     <button
-      [disabled]="signupForm.errors?.['passwordsDontMatch'] || signupForm.invalid"
+      [disabled]="
+        signupForm.errors?.['passwordsDontMatch'] || signupForm.invalid
+      "
       class="ui submit button primary"
     >
       Submit

@@ -24,7 +24,7 @@ describe('EmailService', () => {
     });
 
     const req = httpTestingController.expectOne(
-      'https://api.angular-email.com/emails'
+      'https://api.angular-email.com/emails',
     );
 
     expect(req.request.method).toBe('GET');

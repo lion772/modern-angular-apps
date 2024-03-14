@@ -1,13 +1,21 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { BehaviorSubject, Observable, catchError, map, of } from 'rxjs';
+import {
+  BehaviorSubject,
+  EMPTY,
+  catchError,
+  map,
+  of,
+  skipWhile,
+  take,
+} from 'rxjs';
 
 interface UsernameResponseAvailability {
   available: boolean;
 }
 
-interface SignupSigninResponse {
+interface UsernameResponse {
   username: string;
 }
 
@@ -21,8 +29,10 @@ interface userAuthentication {
 })
 export class AuthService {
   private url = 'https://api.angular-email.com/auth';
-  private _username: string = '';
-  public userSignedin$ = new BehaviorSubject<boolean | null>(null);
+  private _username = '';
+
+  private userSignedin$ = new BehaviorSubject<boolean | null>(null);
+  public getUserAuthentication$ = this.userSignedin$.asObservable();
 
   public constructor(private http: HttpClient) {}
 
@@ -31,49 +41,52 @@ export class AuthService {
     this._username = username;
   }
 
-  public getUsername(): string {
-    let username = localStorage.getItem('username');
+  public getUsernameFromStorage(): string {
+    const username = localStorage.getItem('username');
     return username ? username : this._username;
   }
 
-  public checkUsernameExists(
-    username: string
-  ): Observable<UsernameResponseAvailability> {
-    return this.http.post<UsernameResponseAvailability>(
-      `${this.url}/username`,
-      {
+  public checkUsernameExists(username: string) {
+    return this.http
+      .post<UsernameResponseAvailability>(`${this.url}/username`, {
         username,
-      }
-    );
+      })
+      .pipe(
+        skipWhile((val) => val === null),
+        take(1),
+        catchError(() => EMPTY)
+      );
   }
 
-  public signUp(userCredentials: FormControl): Observable<void> {
+  public signUp(userCredentials: FormControl) {
     return this.http
-      .post<SignupSigninResponse>(`${this.url}/signup`, userCredentials)
+      .post<UsernameResponse>(`${this.url}/signup`, userCredentials)
       .pipe(
         map(({ username }) => {
           this.userSignedin$.next(true);
           this.setUsername(username);
+          return username;
         })
       );
   }
 
-  public signIn(userCredentials: FormControl): Observable<void> {
+  public signIn(userCredentials: FormControl) {
     return this.http
-      .post<SignupSigninResponse>(`${this.url}/signin`, userCredentials)
+      .post<UsernameResponse>(`${this.url}/signin`, userCredentials)
       .pipe(
         map(({ username }) => {
+          localStorage.setItem('username', username);
           this.userSignedin$.next(true);
           this.setUsername(username);
+          return username;
         })
       );
   }
 
-  public checkAuth(): Observable<boolean> {
+  public checkAuth() {
     return this.http.get<userAuthentication>(`${this.url}/signedin`).pipe(
       map(({ authenticated }) => {
         this.userSignedin$.next(authenticated);
-        return authenticated;
       })
     );
   }

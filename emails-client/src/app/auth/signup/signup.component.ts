@@ -1,5 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, Self } from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { MatchPassword } from '../validators/match-password';
 import { UniqueUsername } from '../validators/unique-username';
 import { AuthService } from '../auth.service';
@@ -9,42 +14,52 @@ import { Router } from '@angular/router';
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss'],
+  providers: [UniqueUsername, MatchPassword],
 })
 export class SignupComponent implements OnInit {
-  public signupForm = new FormGroup(
-    {
-      username: new FormControl(
-        '',
-        [
-          Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(20),
-          Validators.pattern(/^[a-z0-9]+$/),
-        ],
-        [this.uniqueUsername.validate]
-      ),
-      password: new FormControl('', [
-        Validators.required,
-        Validators.minLength(4),
-        Validators.maxLength(20),
-      ]),
-      passwordConfirmation: new FormControl('', [
-        Validators.required,
-        Validators.minLength(4),
-        Validators.maxLength(20),
-      ]),
-    },
-    { validators: [this.matchPassword.validate] }
-  );
+  public signupForm!: FormGroup;
 
   public constructor(
-    private matchPassword: MatchPassword,
-    private uniqueUsername: UniqueUsername,
+    @Self() private matchPassword: MatchPassword,
+    @Self() private uniqueUsername: UniqueUsername,
+    private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.signupForm = this.fb.group(
+      {
+        username: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(3),
+            Validators.maxLength(20),
+            Validators.pattern(/^[a-z0-9]+$/),
+          ],
+          [this.uniqueUsername.validate],
+        ],
+        password: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(4),
+            Validators.maxLength(20),
+          ],
+        ],
+        passwordConfirmation: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(4),
+            Validators.maxLength(20),
+          ],
+        ],
+      },
+      { validators: [this.matchPassword.validate] },
+    );
+  }
 
   public onSubmitForm(): void {
     this.authService.signUp(this.signupValue).subscribe({

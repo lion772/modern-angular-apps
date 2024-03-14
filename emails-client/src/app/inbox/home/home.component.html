@@ -1,8 +1,14 @@
 <div class="ui grid stackable">
   <div class="five wide column">
+    <!-- <ng-template #emailCreate></ng-template> -->
+    <h1 #title>Add title via ElementRef</h1>
+    <app-email-create></app-email-create>
     <ng-container *ngIf="emailList$ | async as emailList">
-      <app-email-create></app-email-create>
-      <app-email-index [emails]="emailList"></app-email-index>
+      <button (click)="updateUsername()">Update Username</button>
+      <app-email-index
+        [emails]="emailList"
+        [username]="username"
+      ></app-email-index>
     </ng-container>
   </div>
   <div class="eleven wide column">

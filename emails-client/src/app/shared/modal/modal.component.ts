@@ -1,9 +1,9 @@
 import {
+  AfterContentInit,
   Component,
   ElementRef,
   EventEmitter,
   OnDestroy,
-  OnInit,
   Output,
 } from '@angular/core';
 
@@ -12,12 +12,13 @@ import {
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss'],
 })
-export class ModalComponent implements OnInit, OnDestroy {
+export class ModalComponent implements AfterContentInit, OnDestroy {
   @Output() dismiss = new EventEmitter();
 
   public constructor(private elementRef: ElementRef) {}
 
-  ngOnInit(): void {
+  ngAfterContentInit(): void {
+    console.log(this.elementRef.nativeElement);
     document.body.appendChild(this.elementRef.nativeElement);
   }
 

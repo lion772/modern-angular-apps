@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanLoad, Route, UrlSegment, Router } from '@angular/router';
-import { Observable, pipe } from 'rxjs';
+import { Observable } from 'rxjs';
 import { take, skipWhile, map } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 
@@ -8,13 +8,16 @@ import { AuthService } from './auth.service';
   providedIn: 'root',
 })
 export class AuthGuard implements CanLoad {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+  ) {}
 
   canLoad(
     route: Route,
-    segments: UrlSegment[]
+    segments: UrlSegment[],
   ): boolean | Observable<boolean> | Promise<boolean> {
-    return this.authService.userSignedin$.pipe(
+    return this.authService.getUserAuthentication$.pipe(
       skipWhile((val) => val === null),
       //TypeScript non-null assertion operator: 'value!'
       map((value) => value!),
@@ -24,7 +27,7 @@ export class AuthGuard implements CanLoad {
           this.router.navigateByUrl('/');
         }
         return authenticated;
-      })
+      }),
     );
   }
 }

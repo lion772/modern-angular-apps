@@ -1,6 +1,5 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { Email } from '../email';
-import { AuthService } from 'src/app/auth/auth.service';
 import { EmailService } from '../email.service';
 
 @Component({
@@ -16,7 +15,6 @@ export class EmailReplyComponent implements OnChanges {
 
   public ngOnChanges(): void {
     const text = this.email.text.replace(/\n/gi, '\n> ');
-    console.log(this.email);
     this.email = {
       ...this.email,
       from: this.email.to,

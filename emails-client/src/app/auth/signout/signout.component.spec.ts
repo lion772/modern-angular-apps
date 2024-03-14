@@ -8,7 +8,7 @@ describe('SignoutComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [SignoutComponent]
+      declarations: [SignoutComponent],
     });
     fixture = TestBed.createComponent(SignoutComponent);
     component = fixture.componentInstance;

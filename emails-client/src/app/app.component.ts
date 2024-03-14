@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './auth/auth.service';
-import { BehaviorSubject, map } from 'rxjs';
 
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -12,16 +11,18 @@ import { AppState } from './simple.reducer';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  public isUserSignedin: BehaviorSubject<boolean | null> =
-    this.authService.userSignedin$;
-  
-  public message$!: Observable<String>;
-  
+  public isUserSignedin!: Observable<boolean | null>;
 
-  public constructor(private authService: AuthService, private store: Store<AppState>) {}
+  public message$!: Observable<string>;
+
+  public constructor(
+    private authService: AuthService,
+    private store: Store<AppState>
+  ) {}
 
   public ngOnInit(): void {
     this.authService.checkAuth().subscribe();
-    this.message$ = this.store.select("message");
+    this.isUserSignedin = this.authService.getUserAuthentication$;
+    this.message$ = this.store.select('message');
   }
 }

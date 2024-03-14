@@ -1,11 +1,5 @@
-import { Component } from '@angular/core';
-import {
-  AbstractControl,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
-import { UniqueUsername } from '../validators/unique-username';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 
@@ -14,25 +8,29 @@ import { Router } from '@angular/router';
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.scss'],
 })
-export class SigninComponent {
-  public signinForm = new FormGroup({
-    username: new FormControl('', [
-      Validators.required,
-      Validators.minLength(3),
-      Validators.maxLength(20),
-      Validators.pattern(/^[a-z0-9]+$/),
-    ]),
-    password: new FormControl('', [
-      Validators.required,
-      Validators.minLength(4),
-      Validators.maxLength(20),
-    ]),
-  });
+export class SigninComponent implements OnInit {
+  public signinForm!: FormGroup;
 
   public constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
   ) {}
+
+  public ngOnInit(): void {
+    this.signinForm = new FormGroup({
+      username: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(20),
+        Validators.pattern(/^[a-z0-9]+$/),
+      ]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(20),
+      ]),
+    });
+  }
 
   public onSubmitForm(): void {
     this.authService.signIn(this.signinValue).subscribe({

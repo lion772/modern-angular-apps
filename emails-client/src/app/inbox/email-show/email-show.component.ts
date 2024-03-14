@@ -10,7 +10,9 @@ import { Email } from '../email';
 export class EmailShowComponent implements OnInit {
   public email!: Email;
 
-  public constructor(private route: ActivatedRoute) {
+  public constructor(private route: ActivatedRoute) {}
+
+  public ngOnInit() {
     this.route.data.subscribe(({ email }) => {
       const httpTagIndex = email.text.indexOf('<');
       const emailText = email.text.substring(0, httpTagIndex);
@@ -20,6 +22,4 @@ export class EmailShowComponent implements OnInit {
       };
     });
   }
-
-  public ngOnInit() {}
 }

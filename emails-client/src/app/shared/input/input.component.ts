@@ -15,7 +15,7 @@ export class InputComponent {
   public lengthNecessary(query: string): number {
     return Math.abs(
       this.errors?.[query]?.['requiredLength'] -
-        this.errors?.[query]?.['actualLength']
+        this.errors?.[query]?.['actualLength'],
     );
   }
 

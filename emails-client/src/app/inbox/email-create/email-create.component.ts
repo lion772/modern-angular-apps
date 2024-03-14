@@ -14,19 +14,19 @@ export class EmailCreateComponent implements OnInit {
 
   public constructor(
     private authService: AuthService,
-    private emailService: EmailService
-  ) {
+    private emailService: EmailService,
+  ) {}
+
+  ngOnInit(): void {
     this.email = {
       id: '',
       to: '',
       subject: '',
       html: '',
       text: '',
-      from: this.authService.getUsername() + '@angular-app.com',
+      from: this.authService.getUsernameFromStorage() + '@angular-app.com',
     };
   }
-
-  ngOnInit(): void {}
 
   onSubmitEmailForm(emailSubmitted: Email) {
     this.email = { ...this.email, ...emailSubmitted };

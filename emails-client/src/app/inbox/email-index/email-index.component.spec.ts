@@ -8,7 +8,7 @@ describe('EmailIndexComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [EmailIndexComponent]
+      declarations: [EmailIndexComponent],
     });
     fixture = TestBed.createComponent(EmailIndexComponent);
     component = fixture.componentInstance;

@@ -7,14 +7,12 @@ import { Observable, catchError, map, of } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { AuthService } from '../auth.service';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class UniqueUsername implements AsyncValidator {
   public constructor(private authService: AuthService) {}
 
   validate = (
-    control: AbstractControl
+    control: AbstractControl,
   ): Observable<ValidationErrors | null> => {
     const { value } = control;
 
@@ -27,7 +25,7 @@ export class UniqueUsername implements AsyncValidator {
         } else {
           return of({ noConnection: true });
         }
-      })
+      }),
     );
   };
 }

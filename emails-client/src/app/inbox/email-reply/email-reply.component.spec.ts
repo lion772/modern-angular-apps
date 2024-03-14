@@ -8,7 +8,7 @@ describe('EmailReplyComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [EmailReplyComponent]
+      declarations: [EmailReplyComponent],
     });
     fixture = TestBed.createComponent(EmailReplyComponent);
     component = fixture.componentInstance;

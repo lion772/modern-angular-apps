@@ -6,7 +6,6 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-email-form',
@@ -28,25 +27,25 @@ export class EmailFormComponent implements OnInit {
         case 'to':
           this.emailForm.addControl(
             key,
-            new FormControl('', [Validators.required, Validators.email])
+            new FormControl('', [Validators.required, Validators.email]),
           );
           break;
         case 'from':
           this.emailForm.addControl(
             key,
-            new FormControl({ value: this.email.from, disabled: true })
+            new FormControl({ value: this.email.from, disabled: true }),
           );
           break;
         default:
           this.emailForm.addControl(
             key,
-            new FormControl('', [Validators.required])
+            new FormControl('', [Validators.required]),
           );
           break;
       }
       this.emailForm.addControl(
         key,
-        new FormControl('', [Validators.required])
+        new FormControl('', [Validators.required]),
       );
     });
   }

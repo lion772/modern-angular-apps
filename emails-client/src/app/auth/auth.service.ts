@@ -54,7 +54,7 @@ export class AuthService {
       .pipe(
         skipWhile((val) => val === null),
         take(1),
-        catchError(() => EMPTY)
+        catchError(() => EMPTY),
       );
   }
 
@@ -66,7 +66,7 @@ export class AuthService {
           this.userSignedin$.next(true);
           this.setUsername(username);
           return username;
-        })
+        }),
       );
   }
 
@@ -79,7 +79,7 @@ export class AuthService {
           this.userSignedin$.next(true);
           this.setUsername(username);
           return username;
-        })
+        }),
       );
   }
 
@@ -87,7 +87,7 @@ export class AuthService {
     return this.http.get<userAuthentication>(`${this.url}/signedin`).pipe(
       map(({ authenticated }) => {
         this.userSignedin$.next(authenticated);
-      })
+      }),
     );
   }
 
@@ -96,7 +96,7 @@ export class AuthService {
       map(() => {
         this.userSignedin$.next(false);
         localStorage.removeItem('username');
-      })
+      }),
     );
   }
 }

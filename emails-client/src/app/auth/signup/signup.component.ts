@@ -24,10 +24,14 @@ export class SignupComponent implements OnInit {
     @Self() private uniqueUsername: UniqueUsername,
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
+    this.initializeSignupForm();
+  }
+
+  private initializeSignupForm() {
     this.signupForm = this.fb.group(
       {
         username: [
@@ -57,11 +61,11 @@ export class SignupComponent implements OnInit {
           ],
         ],
       },
-      { validators: [this.matchPassword.validate] },
+      { validators: [this.matchPassword.validate] }
     );
   }
 
-  public onSubmitForm(): void {
+  public onSubmitForm() {
     this.authService.signUp(this.signupValue).subscribe({
       next: () => {
         this.router.navigateByUrl('/inbox');

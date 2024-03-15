@@ -3,10 +3,10 @@ import { UniqueUsername } from './unique-username';
 import { AuthService } from '../auth.service';
 
 describe('UniqueUsername', () => {
-  let uniqueUsername: UniqueUsername, authSpy: any;
+  let uniqueUsername: UniqueUsername;
 
   beforeEach(() => {
-    authSpy = jasmine.createSpyObj('AuthService', ['setUsername']);
+    const authSpy = jasmine.createSpyObj<AuthService>('AuthService', ['setUsername']);
     TestBed.configureTestingModule({
       providers: [UniqueUsername, { provider: AuthService, useValue: authSpy }],
     });

@@ -2,7 +2,7 @@
   Compose
 </button>
 
-<app-modal (dismiss)="showModal = false" *ngIf="showModal">
+<app-modal (dismiss)="showModal = $event" *ngIf="showModal">
   <h3 modalTitle>Compose</h3>
   <app-email-form
     [email]="email"

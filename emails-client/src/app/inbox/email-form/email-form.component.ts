@@ -14,7 +14,8 @@ import {
 })
 export class EmailFormComponent implements OnInit {
   @Input() email!: Email;
-  @Output() emailSubmit = new EventEmitter();
+  @Output() emailSubmit = new EventEmitter<Email>();
+
   public emailForm!: FormGroup;
   public emailFormKeys = ['from', 'to', 'subject', 'text'];
 
@@ -69,5 +70,9 @@ export class EmailFormComponent implements OnInit {
 
   public get from(): FormControl {
     return this.emailForm.get('from') as FormControl;
+  }
+
+  public get dirty(): boolean {
+    return this.emailForm.dirty;
   }
 }

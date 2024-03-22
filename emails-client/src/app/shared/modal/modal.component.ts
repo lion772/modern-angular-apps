@@ -1,29 +1,38 @@
 import {
   AfterContentInit,
   Component,
+  ContentChild,
   ElementRef,
   EventEmitter,
   OnDestroy,
   Output,
 } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { EmailFormComponent } from 'src/app/inbox/email-form/email-form.component';
 
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss'],
 })
-export class ModalComponent implements AfterContentInit, OnDestroy {
+export class ModalComponent
+  implements AfterContentInit, AfterContentInit, OnDestroy
+{
   @Output() dismiss = new EventEmitter();
+  @ContentChild(EmailFormComponent) formComponent!: EmailFormComponent;
 
-  public constructor(private elementRef: ElementRef) {}
+  public constructor(
+    private elementRef: ElementRef,
+    private _snackBar: MatSnackBar,
+  ) {}
 
   ngAfterContentInit(): void {
-    console.log(this.elementRef.nativeElement)
     document.body.appendChild(this.elementRef.nativeElement);
   }
 
   onDismissClick() {
-    this.dismiss.emit();
+    this.dismiss.emit(this.formComponent.dirty);
+    this.formComponent.dirty && this._snackBar.open('You have unsaved changes!', 'DISCARD');
   }
 
   handleKeyDown(event: KeyboardEvent) {

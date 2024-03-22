@@ -8,6 +8,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthHttpInterceptor } from './auth/auth-http-interceptor';
 import { StoreModule } from '@ngrx/store';
 import { simpleReducer } from './simple.reducer';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,6 +18,7 @@ import { simpleReducer } from './simple.reducer';
     AppRoutingModule,
     HttpClientModule,
     StoreModule.forRoot({ message: simpleReducer }),
+    BrowserAnimationsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true },

@@ -12,6 +12,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { SharedModule } from '../shared/shared.module';
 import { EmailFormComponent } from './email-form/email-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     InboxRoutingModule,
     SharedModule,
     ReactiveFormsModule,
+    MatSnackBarModule
   ],
 })
 export class InboxModule {}

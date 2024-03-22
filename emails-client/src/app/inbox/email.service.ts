@@ -11,9 +11,7 @@ interface UsernameResponse {
 export class EmailService {
   public rootUrl = 'https://api.angular-email.com';
 
-  public constructor(private http: HttpClient) {
-    console.log('EmailService has been initialized...');
-  }
+  public constructor(private http: HttpClient) {}
 
   public getEmails() {
     return this.http.get<EmailsResponse[]>(`${this.rootUrl}/emails`);

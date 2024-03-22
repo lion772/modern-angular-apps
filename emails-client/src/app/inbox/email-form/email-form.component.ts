@@ -50,6 +50,7 @@ export class EmailFormComponent implements OnInit {
     });
   }
 
+
   public onSubmit() {
     this.emailSubmit.emit(this.emailForm.value);
   }

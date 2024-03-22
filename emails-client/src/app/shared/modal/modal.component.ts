@@ -18,7 +18,6 @@ export class ModalComponent implements AfterContentInit, OnDestroy {
   public constructor(private elementRef: ElementRef) {}
 
   ngAfterContentInit(): void {
-    console.log(this.elementRef.nativeElement);
     document.body.appendChild(this.elementRef.nativeElement);
   }
 

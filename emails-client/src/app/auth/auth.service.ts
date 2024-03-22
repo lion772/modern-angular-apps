@@ -6,7 +6,6 @@ import {
   EMPTY,
   catchError,
   map,
-  of,
   skipWhile,
   take,
 } from 'rxjs';
@@ -25,7 +24,7 @@ interface userAuthentication {
 }
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root',  
 })
 export class AuthService {
   private url = 'https://api.angular-email.com/auth';
@@ -54,6 +53,7 @@ export class AuthService {
       .pipe(
         skipWhile((val) => val === null),
         take(1),
+        map((val) => !!val),
         catchError(() => EMPTY),
       );
   }

@@ -24,7 +24,7 @@ export class SignupComponent implements OnInit {
     @Self() private uniqueUsername: UniqueUsername,
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -42,7 +42,10 @@ export class SignupComponent implements OnInit {
             Validators.maxLength(20),
             Validators.pattern(/^[a-z0-9]+$/),
           ],
-          [this.uniqueUsername.validate],
+          [
+            this.uniqueUsername.validate,
+            this.uniqueUsername.validateCharacter('*'),
+          ],
         ],
         password: [
           '',
@@ -61,7 +64,7 @@ export class SignupComponent implements OnInit {
           ],
         ],
       },
-      { validators: [this.matchPassword.validate] }
+      { updateOn: 'blur', validators: [this.matchPassword.validate] },
     );
   }
 

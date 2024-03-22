@@ -1,6 +1,6 @@
-<button (click)="onDismissClick()" class="ui dimmer visible active">
-  <button (click)="$event.stopPropagation()" class="ui modal visible active">
-    <button class="close icon" (click)="onDismissClick()">X</button>
+<div (click)="onDismissClick()" role="button" class="ui dimmer visible active" (keydown)="handleKeyDown($event)" tabindex="0">
+  <div (click)="$event.stopPropagation()" role="button" class="ui modal visible active" (keydown)="handleKeyDown($event)" tabindex="0">
+    <div (click)="onDismissClick()" class="close icon" role="button" tabindex="0" (keydown)="handleKeyDown($event)">X</div>
     <div class="header">
       <ng-content select="[modalTitle]"></ng-content>
     </div>
@@ -8,10 +8,10 @@
       <ng-content></ng-content>
     </div>
     <div class="actions actions-default">
-      <button (click)="onDismissClick()" class="ui button primary">Ok</button>
+      <div (click)="onDismissClick()" class="ui button primary" (keydown)="handleKeyDown($event)" tabindex="0">Ok</div>
     </div>
     <div class="actions">
       <ng-content select="[modalFooter]"></ng-content>
     </div>
-  </button>
-</button>
+  </div>
+</div>

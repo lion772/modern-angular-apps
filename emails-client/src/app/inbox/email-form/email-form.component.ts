@@ -51,7 +51,6 @@ export class EmailFormComponent implements OnInit {
     });
   }
 
-
   public onSubmit() {
     this.emailSubmit.emit(this.emailForm.value);
   }
@@ -72,7 +71,15 @@ export class EmailFormComponent implements OnInit {
     return this.emailForm.get('from') as FormControl;
   }
 
-  public get dirty(): boolean {
-    return this.emailForm.dirty;
+  public get emailFormNotEmpty(): boolean {
+    return (
+      this.isControlNotEmpty(this.to) ||
+      this.isControlNotEmpty(this.subject) ||
+      this.isControlNotEmpty(this.text)
+    );
+  }
+
+  public isControlNotEmpty(control: FormControl): boolean {
+    return control.value !== '';
   }
 }
